@@ -15,16 +15,16 @@ Motto.ui = {};
  */
 Motto.ui.Dialog = function(config) {
     Motto.ui.Dialog.superclass.constructor.call(this);
-    // 初期化パラメータ設定
+    // Initialization parameter settings
     if (config != null) { Motto.apply(this, config); }
 };
 Motto.ui.Dialog.prototype = {
-    dialog    : null,// ダイアログオブジェクト
-    width     : 450,// ダイアログ幅
-    //height  : 400,// ダイアログ高さ
-    container : "",// コンテナエレメントのID
-    load_url  : '',// ダイアログhtmlのurl
-    anim_target_id : null,// 表示・消去時のアニメーションのベースとなるエレメント
+    dialog    : null,// Dialog object
+    width     : 450,// Dialog width
+    //height  : 400,// Dialog height
+    container : "",// Container element ID
+    load_url  : '',// local url
+    anim_target_id : null,// The base element of the animation display erase
 
 
     after_load: true,
@@ -41,7 +41,7 @@ Motto.ui.Dialog.prototype = {
     },
 
     /**
-     * ダイアログの遅延読み込み
+     * Lazy loading dialog
      */
     loadDialog: function() {
         if (this.load_url != '') {
@@ -94,25 +94,25 @@ Motto.ui.Dialog.prototype = {
         var is_loaded = this.is_loaded();
         if (!is_loaded) return false;
 
-        // 初期化パラメータ設定
+        // Initialization parameter settings
         if( config != null){
             Motto.apply(this, config);
         }
         if( this.dialog == null ){
-            // 初回のみダイアログオブジェクト生成
+            // Only the first generation dialog object
             this._fncCreateDialog();
             this.fncReset();
         } else {
-            // 再表示時はリセット処理
+            // Reappear when the reset process
             this.fncReset();
         }
-        // anim_target_idが指定されている場合は、アニメーションターゲット指定
+        // anim_target_id is given if the animation targeting
         var base_elm_dom = null ;
         if( this.anim_target_id != null ){        
             var base_elm = Ext.get(this.anim_target_id) ;
             base_elm_dom = base_elm.dom ;
         }
-        // ダイアログ表示
+        // Dialog display
         this.dialog.x = undefined  ;
         this.dialog.y = undefined  ;
         this.dialog.show(base_elm_dom);
@@ -121,17 +121,17 @@ Motto.ui.Dialog.prototype = {
     },
 
     /*==================================================
-     * 関数名：fncReset
-     * 概　要：ダイアログ内容をリセットする（初期表示時、再表示時に呼び出される）
-     * 引　数：なし
-     * 戻り値：なし
+     * Function Name：fncReset
+     * Overview：Reset your dialog (in the initial display, redisplay called upon)
+     * Argument：なし
+     * Return Value：なし
      ==================================================*/
     fncReset: function() {},
 
     /**
      * fncCreateDialog
-     * コンテナエレメントに対して、ダイアログオブジェクトを生成する
-     * （初期表示時に呼び出される）
+     * The container element to generate a dialog object
+     * (to be called when the initial display)
      */
     _fncCreateDialog : function(){
         this.dialog = new Ext.Window({ 
@@ -145,7 +145,7 @@ Motto.ui.Dialog.prototype = {
             resizable:  false,
             closeAction:'hide'
         });
-        // イベント設定(下記以外に必要なイベントは、サブクラスにて実装)
+        // Setting event (other than the following events required for implementation in a subclass)
         this.dialog.addListener('beforehide', this.onBeforeHide, this, true);
         this.dialog.addListener('beforeshow', this.onBeforeShow, this, true);
         this.dialog.addListener('hide', this.onHide, this, true);
@@ -158,8 +158,8 @@ Motto.ui.Dialog.prototype = {
 
     /**
      * fncGetAttribute
-     * 属性値を取得する
-     * @param attr_name String 属性名
+     * Get the attribute value
+     * @param attr_name String Attribute name
      * @return this[attr_name]
      ==================================================*/
     fncGetAttribute : function(attr_name) {

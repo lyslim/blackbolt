@@ -5,7 +5,7 @@ Ext.namespace('Ext.i3.grid');
 
 
 /*---------------------------------------------
- * GroupJsonReaderクラス定義
+ * GroupJsonReader class definition
  *--------------------------------------------- */
 Ext.i3.data.GroupJsonReader = function(meta, recordType) {
     meta = meta || {};
@@ -14,7 +14,7 @@ Ext.i3.data.GroupJsonReader = function(meta, recordType) {
 Ext.extend(Ext.i3.data.GroupJsonReader, Ext.data.JsonReader, {});
 
 /*---------------------------------------------
- * GroupJsonStoreクラス定義
+ * GroupJsonStore class definition
  *--------------------------------------------- */
 Ext.i3.data.GroupJsonStore = function(c) {
     this.nodedata = new Ext.util.MixedCollection(false);
@@ -42,7 +42,7 @@ Ext.extend(Ext.i3.data.GroupJsonStore, Ext.data.JsonStore, {
                 this.modified = [];
             }
             for(var i = 0, len = r.length; i < len; i++){
-                // configで指定されたグループフィールドごとに、グループレコードを生成
+                // config for each field specified in the group, the group produced a record
                 new_r = new_r.concat( this.fncConvertGroupRow( r, i ) ) ;
             }
             this.data.clear();
@@ -61,10 +61,10 @@ Ext.extend(Ext.i3.data.GroupJsonStore, Ext.data.JsonStore, {
     },
     
     /*
-     * 関数名：fncConvertGroupRow
-     * 概　要：グループデータへの変換
-     * 引　数：なし
-     * 戻り値：なし
+     * Function Name：fncConvertGroupRow
+     * Overview：Data Conversion Group
+     * Argument：No
+     * Return Value：No
      */
     fncConvertGroupRow : function( records, index ){
         records[index].join( this );
@@ -76,10 +76,10 @@ Ext.extend(Ext.i3.data.GroupJsonStore, Ext.data.JsonStore, {
     },
     
     /*
-     * 関数名：fncCreateGroupRow
-     * 概　要：グループデータ行生成
-     * 引　数：なし
-     * 戻り値：なし
+     * Function Name：fncCreateGroupRow
+     * Overview：Generate data line group
+     * Argument：No
+     * Return Value：No
      */
     fncCreateGroupRow : function(prerec, currec, level, force, config){
         var cur_level   = (level == null) ? 0 : level;
@@ -94,7 +94,7 @@ Ext.extend(Ext.i3.data.GroupJsonStore, Ext.data.JsonStore, {
         var pre_group     = prerec != null ? prerec.data[group_field] : "";
         var cur_group     = currec.data[group_field];
 
-        // 現在チェック中のグループ値が異なる場合、グループ用レコードを生成
+        // Check if current value is different in the group, generates a record for the group
         if( (pre_group != cur_group && cur_group != "" && cur_group != null) ||
             (pre_group == cur_group && cur_group != "" && cur_group != null && force ) ){
 
@@ -142,7 +142,7 @@ Ext.extend(Ext.i3.data.GroupJsonStore, Ext.data.JsonStore, {
 });
 
 /*---------------------------------------------
- * GroupGridViewクラス定義
+ * GroupGridView Class definition
  *--------------------------------------------- */
 Ext.i3.grid.GroupGridView = function(c){
     Ext.i3.grid.GroupGridView.superclass.constructor.call(this, c);

@@ -30,12 +30,12 @@ components.projects.wbs_grid = function(p_cd)
         order_url      : url_for('projects/' + p_cd + '/items/{:id}/item_order_update.json'),
 
         messages: {
-            deleted: "このセクションを削除します．\n本当によろしいですか？"
+            deleted: "Delete this section. \ n Are you sure?"
         },
 
-        grid_list      : null, // グリッドエレメント
-        selectedIndex  : -1, // 選択行インデックス
-        ctxMenu        : null, // コンテキストメニュー
+        grid_list      : null, // Grid Element
+        selectedIndex  : -1, // Select the row index
+        ctxMenu        : null, // Context Menu
 
         create_store: function()
         {
@@ -126,15 +126,15 @@ components.projects.wbs_grid = function(p_cd)
         },
 
         /*
-         * 関数名：onProgressKbnRenderer
-         * 概　要：進捗状況レンダラー
-         * 引　数：value            Mixed                       アイテム名データ
-         *       ：phash            Hash　                      セル情報
-         *       ：rec              Ext.data.Record             行データオブジェクト
-         *       ：rowIndex         Number                      行インデックス
-         *       ：cellIndex        Number                      列インデックス
-         *       ：datastore        Ext.data.JsonStore          データストアオブジェクト
-         * 戻り値：セル表示内容文字列
+         * Function Name：onProgressKbnRenderer
+         * Overview：Progress renderer
+         * Argument：value            Mixed                       
+         *       ：phash            Hash　                      
+         *       ：rec              Ext.data.Record             
+         *       ：rowIndex         Number                      
+         *       ：cellIndex        Number                      
+         *       ：datastore        Ext.data.JsonStore          
+         * Return Value：Cell display content string
          */
         onProgressKbnRenderer : function (value, phash, rec, rowIndex, cellIndex, datastore){
             if( rec.get('task_kbn')==1 && rec.get('progress_kbn')==3 ){
@@ -147,15 +147,15 @@ components.projects.wbs_grid = function(p_cd)
         },
 
         /*
-         * 関数名：onItemNameRenderer
-         * 概　要：アイテム名レンダラー
-         * 引　数：value            Mixed                       アイテム名データ
-         *       ：phash            Hash　                      セル情報
-         *       ：rec              Ext.data.Record             行データオブジェクト
-         *       ：rowIndex         Number                      行インデックス
-         *       ：cellIndex        Number                      列インデックス
-         *       ：datastore        Ext.data.JsonStore          データストアオブジェクト
-         * 戻り値：セル表示内容文字列
+         * Function Name：onItemNameRenderer
+         * Overview：
+         * Argument：value            Mixed                       
+         *       ：phash            Hash　                      
+         *       ：rec              Ext.data.Record             
+         *       ：rowIndex         Number                      
+         *       ：cellIndex        Number                      
+         *       ：datastore        Ext.data.JsonStore          
+         * Return Value：Cell display content string
          */
         onItemNameRenderer : function(value, phash, rec, rowIndex, cellIndex, datastore){
             var alttext = "" ;
@@ -188,7 +188,7 @@ components.projects.wbs_grid = function(p_cd)
             return String.format('<span style="margin-left:{0}px;white-space:nowrap;overflow:hidden;">{1}&nbsp;{2}</span>', rec.get('level')*15, prefix, value ) ;
         },
 
-        // ツールバー生成
+        // Toolbar generation
         create_toolbar: function()
         {
             var toptoolbar = new Ext.PagingToolbar({
@@ -196,7 +196,7 @@ components.projects.wbs_grid = function(p_cd)
                 store: this.store,
                 displayInfo: true,
                 displayMsg: '{2} 件中　{0} - {1} 件目',
-                emptyMsg: 'データが存在しません'
+                emptyMsg: 'Data does not exist'
             });
             return toptoolbar;
         },
@@ -215,12 +215,12 @@ components.projects.wbs_grid = function(p_cd)
         },
         create_ctxmenu: function(){
             //-----------------------------
-            // コンテキストメニュー生成
+            // Context Menu Generation
             //-----------------------------
             this.ctxMenu = new Ext.menu.Menu({id: this.grid_list.id + "-hctx"});
             this.ctxMenu.add(
-                {id:"upitem", text: "上へ", cls: "grid-ctx-menu-up"},
-                {id:"downitem", text: "下へ", cls: "grid-ctx-menu-down"}
+                {id:"upitem", text: "Upへ", cls: "grid-ctx-menu-up"},
+                {id:"downitem", text: "Downへ", cls: "grid-ctx-menu-down"}
             );
             this.ctxMenu.on("itemclick", this.onCtxMenuClick, this);
         },
@@ -286,12 +286,12 @@ components.projects.wbs_grid = function(p_cd)
         },
 
         /*
-         * 関数名：onRowClick
-         * 概　要：グリッド行クリックイベントハンドラ
-         * 引　数：grid             Ext.grid.Grid               グリッドオブジェクト
-         *       ：rowIndex         Number                      クリック行インデックス
-         *       ：grid             Ext.EventObject             イベントオブジェクト
-         * 戻り値：なし
+         * Function Name：onRowClick
+         * Overview：
+         * Argument：grid             Ext.grid.Grid               
+         *       ：rowIndex         Number                      
+         *       ：grid             Ext.EventObject             
+         * Return Value：No
          */
         onRowClick : function(grid, rowIndex, e) {
             var view = this.grid_list.getView();
@@ -301,12 +301,12 @@ components.projects.wbs_grid = function(p_cd)
         },
 
         /*
-         * 関数名：onRowDblClick
-         * 概　要：グリッド行ダブルクリックイベントハンドラ
-         * 引　数：grid             Ext.grid.Grid               グリッドオブジェクト
-         *       ：rowIndex         Number                      ダブルクリック行インデックス
-         *       ：grid             Ext.EventObject             イベントオブジェクト
-         * 戻り値：なし
+         * Function Name：onRowDblClick
+         * Overview：
+         * Argument：grid             Ext.grid.Grid               
+         *       ：rowIndex         Number                      
+         *       ：grid             Ext.EventObject             
+         * Return Value：No
          */
         onRowDblClick : function(grid, rowIndex, e){
             this.selectedIndex = rowIndex ;

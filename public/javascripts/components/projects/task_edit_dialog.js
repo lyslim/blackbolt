@@ -26,9 +26,9 @@ components.projects.task_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "この情報でタスクを作成します。\nよろしいですか？",
-            updated: "この情報でタスクを更新します。\nよろしいですか？",
-            deleted: "このタスクを削除します。\n本当によろしいですか？"
+            created: "Create a task with this information. \ n Are you sure?",
+            updated: "Update the tasks in this information. \ n Are you sure?",
+            deleted: "Delete this task. \ n Are you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';
@@ -54,7 +54,7 @@ components.projects.task_edit_dialog = function(project_cd)
         },
         set_elements: function()
         {
-            // @TODO: ダイアログ内のフォームエレメントの初期化処理
+            // @TODO: Initialization of the form elements in the dialog
             var ef = Ext.form;
             var m1 = 'dlg_tsk_edit_task' + '_';
             var m2 = 'dlg_tsk_edit_comp' + '_';
@@ -63,12 +63,12 @@ components.projects.task_edit_dialog = function(project_cd)
             this.form_comp_id               = new ef.Hidden(m2+'id');
             this.form_task_kbn              = new ef.Hidden(m2+'task_kbn');
 
-            // タスク
+            // Task Name
             this.form_item_name             = new ef.TextField({ applyTo: m2+'item_name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                                 allowBlank:false, blankText: 'タスクは必須です。',
+                                                                 allowBlank:false, blankText: 'Task Name is required.',
                                                                  msgTarget: 'title'
                                                                });
-            // 優先度
+            // Priority
             this.form_priority_kbn          = new ef.ComboBoxEx({ transform: m1+'priority_kbn', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                   msgTarget: 'title', style: 'width:80px;', editable:false, triggerAction: "all"
                                                                });
@@ -76,31 +76,31 @@ components.projects.task_edit_dialog = function(project_cd)
             this.form_plan_power            = new ef.NumberField({ applyTo: m1+'plan_power', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                    msgTarget: 'title', value: 0
                                                                });
-            // 予測時間
+            // Prediction Effort
             this.form_tani_kbn              = new ef.ComboBoxEx({ transform: m1+'tani_kbn', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                   msgTarget: 'title', style: 'width:76px;', editable:false, triggerAction: "all"
                                                                });
-            // 期限
+            // Due Date
             this.form_complete_date         = new ef.DateField({ applyTo: m1+'complete_date', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title', format:"Y-m-d"
                                                                });
-            // 期間
+            // Start Date
             this.form_start_date            = new ef.DateField({ applyTo: m1+'start_date', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title', format:"Y-m-d"
                                                                });
-            // 期間
+            // End Date
             this.form_end_date              = new ef.DateField({ applyTo: m1+'end_date', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title', format:"Y-m-d"
                                                                });
-            // 依頼者
+            // 依赖者
             this.form_client_user_id        = new ef.ComboBoxEx({ transform: m1+'client_user_id', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                   msgTarget: 'title', style: 'width:200px;', editable:false, triggerAction: "all"
                                                                });
-            // 成果物
+            // Deliverable
             this.form_result                = new ef.TextArea({ applyTo: m1+'result', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                 msgTarget: 'title'
                                                                });
-            // メモ
+            // Notes
             this.form_memo                  = new ef.TextArea({ applyTo: m1+'memo', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                 msgTarget: 'title'
                                                                });
@@ -108,22 +108,22 @@ components.projects.task_edit_dialog = function(project_cd)
             this.form_class_word1           = new ef.TextField({ applyTo: m2+'class_word1', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
-            // 分類
+            // Classification
             this.form_class_word2           = new ef.TextField({ applyTo: m2+'class_word2', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
-            // 分類
+            // Classification
             this.form_class_word3           = new ef.TextField({ applyTo: m2+'class_word3', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
 
-            //チェックイベント
+            // Check Events
             this.form_item_name.on( 'invalid', invalid_alert, this );
 
         },
         reset_form: function()
         {
-            // @TODO: フォームリセット処理
+            // @TODO: Reset Form Processing
             this.comp_id = null;
             $('#' + this.container + '_destroy').css("display","none");
             this.form_task_id.setValue('');
@@ -174,7 +174,7 @@ components.projects.task_edit_dialog = function(project_cd)
 
             var taskuser_regist_id = new Array() ;
 
-            // 設定済みのタスクユーザーのIDをキーに、ハッシュを生成
+            // Configured user ID as a key task, generates a hash
             if( taskusers != null ){
                 for( var index=0 ; index<taskusers.length ; index++){
                     taskuser_regist_id[taskusers[index].projectuser_id] = true ;
@@ -228,18 +228,18 @@ components.projects.task_edit_dialog = function(project_cd)
         },
 
         validate: function() {
-            // @TODO: 入力チェック
+            // @TODO: Input check
             return this.form_item_name.validate() ? true : false;
         },
 
         onBeforeShow: function()
         {
-            // @TODO: ダイアログ表示の前処理
+            // @TODO: Preprocessing dialog display
             this.load_data();
         },
         onBeforeHide: function()
         {
-            // @TODO: ダイアログを閉じる前の処理
+            // @TODO: Before you close the dialog process
             this.reset_form();
         },
 
@@ -369,7 +369,7 @@ components.projects.task_edit_dialog = function(project_cd)
          * Destroy
          */
         destroy: function() {
-            // @TODO: データ削除処理
+            // @TODO: Data removal process
             if (confirm(this.messages.deleted)) {
                 var url = this.data_url.replace('{:id}', this.comp_id);
                 var opt = {

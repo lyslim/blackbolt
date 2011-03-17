@@ -22,9 +22,12 @@
     <td id="layout_header">
 
 <!--// header //-->
+<%if user_signed_in? %>
 <%= render :partial => 'layouts/header.html.erb' %>
+<%else%>
+<%= render :partial => 'layouts/header_nomenu' %>
+<%end%>
 <!--// endof header //-->
-
     </td>
   </tr>
   <tr>
@@ -47,7 +50,7 @@
 
 <%= javascript_include_tag('http://download.skype.com/share/skypebuttons/js/skypeCheck') %>
 <%= javascript_include_tag([
-    url_for(:controller => 'env', :format => 'js'),
+	url_for(:controller => 'env', :format => 'js'),
     'lib/jquery-1.2.6/jquery',
     'lib/jquery-1.2.6/jquery.ui',
     'lib/jquery-1.2.6/jquery.form',

@@ -18,49 +18,49 @@ App.AccountEdit.prototype = {
 
     set_events : function()
     {
-		// 変更ボタンクリックイベント設定
+		// 更改设置按钮
         $('#btn_save').click($mo.scope(this, this.save));
     },
 
     set_elements: function()
     {
-        // @TODO: ダイアログ内のフォームエレメントの初期化処理
+        // @TODO: 初始化对话框的表单元素
         var ef = Ext.form;
         var m  = 'user'  + '_';
 
-        // お名前
+        // 用户名
         this.form_user_name         = new ef.TextField({ applyTo: m+'user_name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                         allowBlank:false, blankText: 'お名前は必須です。',
+                                                         allowBlank:false, blankText: 'User name is required.',
                                                          msgTarget: 'title'
                                                        });
-        // メールアドレス
+        // 电邮
         this.form_email             = new ef.TextField({ applyTo: m+'email', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                         allowBlank:false, blankText: 'メールアドレスは必須です。', vtype: 'email', vtypeText: 'メールアドレスの形式は不正です。',
+                                                         allowBlank:false, blankText: 'Email is required.', vtype: 'email', vtypeText: 'Invalid email',
                                                          msgTarget: 'title'
                                                        });
-        // パスワード
+        // 密码
         this.form_srcpassword       = new ef.TextField({ applyTo: m+'srcpassword', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                         allowBlank:false, blankText: 'パスワードは必須です。',
+                                                         allowBlank:false, blankText: 'Password is required',
                                                          msgTarget: 'title'
                                                        });
-        // 氏名
+        // 姓名
         this.form_name              = new ef.TextField({ applyTo: m+'name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title'
                                                        });
-        // 生年月日
+        // 生日
         this.form_birthday          = new ef.DateField({ applyTo: m+'birthday', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                         invalidText: '生年月日が不正です',
+                                                         invalidText: 'Invalid birthday',
                                                          msgTarget: 'title', format: "Y-m-d"
                                                        });
-        // 組織
+        // 公司名
         this.form_company_name      = new ef.TextField({ applyTo: m+'company_name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title'
                                                        });
-        // 部署名
+        // 部门名
         this.form_section_name      = new ef.TextField({ applyTo: m+'section_name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title'
                                                        });
-        // 郵便番号
+        // 邮编
         this.form_zip               = new ef.TextField({ applyTo: m+'zip', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title', maxLength: 8
                                                        });
@@ -68,28 +68,28 @@ App.AccountEdit.prototype = {
         this.form_prefecture        = new ef.TextField({ applyTo: m+'prefecture', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title', maxLength: 10
                                                        });
-        // 住所１
+        // 地址１
         this.form_address1          = new ef.TextField({ applyTo: m+'address1', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title'
                                                        });
-        // 住所２
+        // 地址２
         this.form_address2          = new ef.TextField({ applyTo: m+'address2', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title'
                                                        });
-        // 電話番号
+        // 电话
         this.form_tel               = new ef.TextField({ applyTo: m+'tel', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title', maxLength: 14
                                                        });
-        // FAX番号
+        // 传真
         this.form_fax               = new ef.TextField({ applyTo: m+'fax', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title', maxLength: 14
                                                        });
-        // スカイプID
+        // Skype ID
         this.form_skype_id          = new ef.TextField({ applyTo: m+'skype_id', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                          msgTarget: 'title'
                                                        });
 
-        //チェックイベント
+        //check events
         set_invalid_event(this.form_user_name);
         set_invalid_event(this.form_email);
         set_invalid_event(this.form_srcpassword);
@@ -97,7 +97,7 @@ App.AccountEdit.prototype = {
     },
 
     validate: function() {
-        // @TODO: 入力チェック
+        // @TODO: input check
         var rtn = ( this.form_user_name.validate() &&
                     this.form_email.validate() &&
                     this.form_srcpassword.validate() &&
@@ -108,13 +108,13 @@ App.AccountEdit.prototype = {
 
     // messaage
     messages: {
-        updated: "この情報でアカウントを更新します。\nよろしいですか？"
+        updated: "Update your account information. \ n Do you want?"
     },
 
     save : function(o){
         var confirm_message = this.messages.updated;
 
-        // 入力チェック
+        // Input check
         if (!this.validate() || !confirm(confirm_message)) return false;
 
 		form = document.account_form;

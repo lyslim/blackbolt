@@ -109,7 +109,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    session_user_id = @current_user.id
+    session_user_id = current_user.id
 
     params[:dlg_tsk_edit_comp].delete('id')
     params[:dlg_tsk_edit_task].delete('id')
@@ -175,12 +175,12 @@ class TasksController < ApplicationController
   end
 
   def update
-    session_user_id = @current_user.id
+    session_user_id = current_user.id
 
     return unless my_item?(params[:dlg_tsk_edit_comp][:id])# check permission
 
     #-----------------------------
-    # 登録済みオブジェクトを取得
+    # Get registered object
     #-----------------------------
     @projectcomp = DatProjectcomp.find(:first,
                           :conditions => [" dat_projectcomps.id = ? ", params[:dlg_tsk_edit_comp][:id]],
@@ -192,7 +192,7 @@ class TasksController < ApplicationController
     @task.last_operation_kbn = 3
 
     #-----------------------------
-    # タスク担当者生成
+    # task user generation
     #-----------------------------
     # タスクユーザー指定時、タスクユーザーオブジェクトを生成
     @task.dat_taskusers.clear  #一旦削除

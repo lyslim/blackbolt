@@ -1,49 +1,49 @@
 "id","msg_code","msg_kbn","msg_base","msg_jp","msg_cn","msg_en","valid_flg"
-1,"system_name",1,"9arrows","9arrows","9arrows","9arrows",1
-2,"project_name",1,"プロジェクト名","プロジェクト名","プロジェクト名","project name",1
-3,"range",1,"期間","期間","期間","terms",1
-4,"template",1,"テンプレート","テンプレート","テンプレート","templates",1
-5,"part_members",1,"参加メンバー","参加メンバー","参加メンバー","members",1
-6,"add_address",1,"アドレスを追加する","アドレスを追加する","アドレスを追加する","add Address",1
-7,"project_is_added",1,"プロジェクトを追加します。","プロジェクトを追加します。","プロジェクトを追加します。","add a Project",1
-8,"del",1,"削除","削除","削除","delete",1
-9,"add_project",1,"プロジェクトの作成","プロジェクトの作成","プロジェクトの作成","create Project",1
-10,"task",1,"タスク","タスク","タスク","task",1
-11,"create_user",1,"登録者","登録者","登録者","created user",1
-12,"charge_user",1,"担当者","担当者","担当者","charge",1
-13,"priority",1,"優先度","優先度","優先度","priority",1
-14,"delivery_date",1,"納期","納期","納期","delivery date",1
-15,"complete_date",1,"期限","期限","期限","time limit",1
-16,"situation",1,"状況","状況","状況","situation",1
-17,"new",1,"新規","新規","新規","new",1
-18,"edit",1,"編集","編集","編集","edit",1
-19,"del",1,"削除","削除","削除","delete",1
-20,"project_cd",1,"プロジェクトコード","プロジェクトコード","プロジェクトコード","project code",1
-21,"add_task",1,"タスク追加","タスク追加","タスク追加","add task",1
-22,"add_milestone",1,"マイルストーン追加","マイルストーン追加","マイルストーン追加","add milestone",1
-23,"add_event",1,"イベント追加","イベント追加","イベント追加","add event",1
-24,"save_confirm",2,"現在の内容で保存します。よろしいですか？","現在の内容で保存します。よろしいですか？","現在の内容で保存します。よろしいですか？","現在の内容で保存します。よろしいですか？",1
-25,"task_is_added",1,"タスクを追加します","タスクを追加します","タスクを追加します","add a task",1
-26,"project",1,"プロジェクト","プロジェクト","プロジェクト","project",1
-27,"task_name",1,"タスク名","タスク名","タスク名","task name",1
-28,"priority_kbn",1,"優先度","優先度","優先度","priority",1
-29,"priority_kbn_1",1,"低","低","低","低",1
-30,"priority_kbn_2",1,"標準","標準","標準","標準",1
-31,"priority_kbn_3",1,"高","高","高","高",1
-32,"plan_power",1,"予測時間","予測時間","予測時間","予測時間",1
-33,"tani_kbn_1",1,"秒","秒","秒","seconds",1
-34,"tani_kbn_2",1,"時間","時間","時間","hours",1
-35,"tani_kbn_3",1,"日","日","日","days",1
-36,"fcas_power",1,"予定工数","予定工数","予定工数","estimate cost",1
-37,"exp_power",1,"実績工数","実績工数","実績工数","expended cost",1
-38,"client_user",1,"依頼者","依頼者","依頼者","client user",1
-39,"main_user",1,"主担当者","主担当者","主担当者","main user",1
-40,"progress_kbn_0",1,"未着手","未着手","未着手","未着手",1
+1,"system_name",1,"Blackbolt","Blackbolt","Blackbolt","Blackbolt",1
+2,"project_name",1,"Project Name","プロジェクト名","项目名称","Project Name",1
+3,"range",1,"Duration","期間","时间","Duration",1
+4,"template",1,"Project Template","テンプレート","项目模版","Project Template",1
+5,"part_members",1,"Project Member","参加メンバー","项目参与者","Project Member",1
+6,"add_address",1,"Add E-mail Address","アドレスを追加する","增加E-mail","Add E-mail Address",1
+7,"project_is_added",1,"Add a Project","プロジェクトを追加します。","增加一个项目","Add a Project",1
+8,"del",1,"delete","削除","删除","delete",1
+9,"add_project",1,"Create Project","プロジェクトの作成","创建项目","Create Project",1
+10,"task",1,"task","タスク","任务","task",1
+11,"create_user",1,"Publisher","登録者","发布者","Publisher",1
+12,"charge_user",1,"Charge","担当者","负责人","Charge",1
+13,"priority",1,"Priority","優先度","优先权","Priority",1
+14,"delivery_date",1,"Delivery Date","納期","发布日","Delivery Date",1
+15,"complete_date",1,"Deadline","期限","最后期限","Deadline",1
+16,"situation",1,"Status","状況","状态","Status",1
+17,"new",1,"New","新規","新建","New",1
+18,"edit",1,"Edit","編集","编辑","Edit",1
+19,"del",1,"Delete","削除","删除","Delete",1
+20,"project_cd",1,"Delivery Order ID","プロジェクトコード","交货订单号码","Delivery Order ID",1
+21,"add_task",1,"Add Task","タスク追加","增加任务","Add Task",1
+22,"add_milestone",1,"Add Milestone","マイルストーン追加","增加里程碑","add milestone",1
+23,"add_event",1,"Add Event","イベント追加","增加事件","Add Event",1
+24,"save_confirm",2,"Are you sure to save?","現在の内容で保存します。よろしいですか？","确认保存吗？","Are you sure to save?",1
+25,"task_is_added",1,"Add a task","タスクを追加します","增加任务","Add a task",1
+26,"project",1,"Project","プロジェクト","项目","Project",1
+27,"task_name",1,"Task name","タスク名","任务名称","Task name",1
+28,"priority_kbn",1,"Priority","優先度","优先权","Priority",1
+29,"priority_kbn_1",1,"Low","低","低","Low",1
+30,"priority_kbn_2",1,"Normal","標準","一般","Normal",1
+31,"priority_kbn_3",1,"High","高","高","High",1
+32,"plan_power",1,"Effort estimation","予測時間","工作量估算","Effort estimation",1
+33,"tani_kbn_1",1,"seconds","秒","秒","seconds",1
+34,"tani_kbn_2",1,"hours","時間","小时","hours",1
+35,"tani_kbn_3",1,"days","日","天","days",1
+36,"fcas_power",1,"estimate cost","予定工数","estimate cost","estimate cost",1
+37,"exp_power",1,"expended cost","実績工数","expended cost","expended cost",1
+38,"client_user",1,"Sponsor","依頼者","发起者","Sponsor",1
+39,"main_user",1,"Main Responsible Person","主担当者","主要负责人","Main Responsible Person",1
+40,"progress_kbn_0",1,"Not started","未着手","未开始","Not started",1
 41,"progress_kbn_1",1,"仕掛","仕掛","仕掛","仕掛",1
-42,"progress_kbn_2",1,"保留","保留","保留","保留",1
-43,"progress_kbn_3",1,"完了","完了","完了","完了",1
-44,"progress_kbn_9",1,"取消","取消","取消","取消",1
-45,"progress_rate",1,"進捗率","進捗率","進捗率","progress rate",1
+42,"progress_kbn_2",1,"Pending","保留","待定","Pending",1
+43,"progress_kbn_3",1,"Complete","完了","完成","Complete",1
+44,"progress_kbn_9",1,"Cancel","取消","取消","Cancel",1
+45,"progress_rate",1,"Progress Rate","進捗率","进度","Progress Rate",1
 46,"progress_rate_0",1,"０％","０％","０％",0%,1
 47,"progress_rate_1",1,"１０％","１０％","１０％",10%,1
 48,"progress_rate_2",1,"２０％","２０％","２０％",20%,1
@@ -55,139 +55,126 @@
 54,"progress_rate_8",1,"８０％","８０％","８０％",80%,1
 55,"progress_rate_9",1,"９０％","９０％","９０％",90%,1
 56,"progress_rate_10",1,"１００％","１００％","１００％",100%,1
-57,"memo",1,"メモ","メモ","メモ","memo",1
-58,"progress_kbn",1,"進捗状況","進捗状況","進捗状況","progress status",1
-59,"cant_be_empty",3,"は必須入力です。","は必須入力です。","は必須入力です。","is required",1
-60,"in_not_included",3,"の値が範囲外です。","の値が範囲外です。","の値が範囲外です。","の値が範囲外です。",1
-61,"add_projectclass",1,"分類を追加する","分類を追加する","分類を追加する","分類を追加する",1
-62,"class_name",1,"分類名","分類名","分類名","分類名",1
-63,"item_name_task",1,"タスク名","タスク名","タスク名","task name",1
-64,"class_word1",1,"大分類","大分類","大分類","category1",1
-65,"class_word2",1,"中分類","中分類","中分類","category2",1
-66,"class_word3",1,"小分類","小分類","小分類","category3",1
-67,"milestone",1,"マイルストーン","マイルストーン","マイルストーン","milestone",1
-68,"mils_date",1,"日付","日付","日付","date",1
-69,"event",1,"イベント","イベント","イベント","event",1
-70,"start_datetime",1,"開始日時","開始日時","開始日時","開始日時",1
-71,"end_datetime",1,"終了日時","終了日時","終了日時","終了日時",1
-72,"place",1,"場所","場所","場所","place",1
-73,"content",1,"メモ","メモ","メモ","memo",1
-74,"login",1,"ログイン","ログイン","ログイン","Login",1
-75,"signup",1,"サインアップ","サインアップ","サインアップ","Signup",1
-76,"email",1,"メールアドレス","メールアドレス","メールアドレス","email",1
-77,"password",1,"パスワード","パスワード","パスワード","password",1
-78,"confirm_password",1,"パスワード（確認）","パスワード（確認）","パスワード（確認）","password(confirm)",1
-79,"user_name",1,"お名前","お名前","姓名","Your Name",1
-80,"to_signup",1,"新規ユーザー登録","新規ユーザー登録","新規ユーザー登録","Signup",1
-81,"user_login_id",1,"ログインID","ログインID","ログインID","Account",1
-82,"class_word",1,"分類","分類","分類","category",1
-83,"main_user_abb",1,"主","主","主","main",1
-84,"destroy_confirm",2,"この情報を削除します。よろしいですか？","この情報を削除します。よろしいですか？","この情報を削除します。よろしいですか？","この情報を削除します。よろしいですか？",1
-85,"edit_project",1,"プロジェクトの変更","プロジェクトの変更","プロジェクトの変更","save project",1
-86,"destroy_project",1,"プロジェクトの削除","プロジェクトの削除","プロジェクトの削除","delete project",1
-87,"reissue_password",1,"パスワード再発行","パスワード再発行","パスワード再発行","パスワード再発行",1
-88,"signup_mail_subject",1,"9arrowsユーザー登録完了通知","9arrowsユーザー登録完了通知","9arrowsユーザー登録完了通知","9arrowsユーザー登録完了通知",1
-89,"name",1,"氏名","氏名","氏名","name",1
-90,"sex",1,"性別","性別","性別","sex",1
-91,"sex_1",1,"男性","男性","男性","male",1
-92,"sex_2",1,"女性","女性","女性","female",1
-93,"birthday",1,"生年月日","生年月日","生年月日","birthday",1
-94,"company_name",1,"組織","組織","組織","company",1
-95,"section_name",1,"部署名","部署名","部署名","section",1
-96,"zip",1,"郵便番号","郵便番号","郵便番号","zip code",1
-97,"prefecture",1,"都道府県","都道府県","都道府県","都道府県",1
-98,"address1",1,"住所１","住所１","住所１","address1",1
-99,"address2",1,"住所２","住所２","住所２","address2",1
-100,"tel",1,"電話番号","電話番号","電話番号","tel",1
-101,"fax",1,"FAX番号","FAX番号","FAX番号","fax",1
-102,"edit_user",1,"ユーザー情報の変更","ユーザー情報の変更","ユーザー情報の変更","ユーザー情報の変更",1
-103,"invite_mail_subject",1,"プロジェクト管理ツール【9arrows】へ招待されました","プロジェクト管理ツール【9arrows】へ招待されました","プロジェクト管理ツール【9arrows】へ招待されました","プロジェクト管理ツール【9arrows】へ招待されました",1
-104,"logout",1,"ログアウト","ログアウト","退出","Logout",1
-105,"myprofile",1,"アカウント","アカウント","帳号","Account",1
-106,"project_leader",1,"プロジェクトリーダー","プロジェクトリーダー","プロジェクトリーダー","project leader",1
-107,"submenu_dashboard",1,"DashBoard","DashBoard","DashBoard","DashBoard",1
-108,"submenu_wbs",1,"WBS","WBS","WBS","WBS",1
-109,"submenu_calendar",1,"Calendar","Calendar","Calendar","Calendar",1
-110,"add_tab",1,"タブ追加","タブ追加","タブ追加","add tab",1
-111,"del_tab",1,"タブ削除","タブ削除","タブ削除","delete tab",1
-112,"confirmation",1,"確認","確認","確認","confirm",1
-113,"report",1,"報告","報告","報告","report",1
-114,"end_user_name",1,"エンドユーザー名","エンドユーザー名","エンドユーザー名","nickname",1
-115,"submenu_gantt",1,"Gantt","Gantt","Gantt","Gantt",1
-116,"wbs",1,"WBS","WBS","WBS","WBS",1
-117,"month",1,"月","月","月","month",1
-118,"year",1,"年","年","年","year",1
-119,"all",1,"全て","全て","全て","all",1
-120,"all_member",1,"全員","全員","全員","all member",1
-121,"task_lineno_save_error",3,"タスク情報保存中にエラーが発生しました","タスク情報保存中にエラーが発生しました","タスク情報保存中にエラーが発生しました","タスク情報保存中にエラーが発生しました",1
-122,"range_compare_invalid",3,"の指定に誤りがあります","の指定に誤りがあります","の指定に誤りがあります","の指定に誤りがあります",1
-123,"start_date",1,"開始日","開始日","開始日","開始日",1
-124,"not_numeric",3,"は数値でなければいけません","は数値でなければいけません","は数値でなければいけません","は数値でなければいけません",1
-125,"too_long",3,"は最大%d文字で入力してください","は最大%d文字で入力してください","は最大%d文字で入力してください","は最大%d文字で入力してください",1
-126,"format_invalid",3,"の形式に誤りがあります","の形式に誤りがあります","の形式に誤りがあります","の形式に誤りがあります",1
-127,"end_date",1,"終了日","終了日","終了日","終了日",1
-128,"task_destroy_error",3,"タスク情報の削除中にエラーが発生しました","タスク情報の削除中にエラーが発生しました","タスク情報の削除中にエラーが発生しました","タスク情報の削除中にエラーが発生しました",1
-129,"milestone_lineno_save_error",3,"マイルストーン情報保存中にエラーが発生しました","マイルストーン情報保存中にエラーが発生しました","マイルストーン情報保存中にエラーが発生しました","マイルストーン情報保存中にエラーが発生しました",1
-130,"milestone_destroy_error",3,"マイルストーン情報の削除中にエラーが発生しました","マイルストーン情報の削除中にエラーが発生しました","マイルストーン情報の削除中にエラーが発生しました","マイルストーン情報の削除中にエラーが発生しました",1
-131,"event_lineno_save_error",3,"イベント情報保存中にエラーが発生しました","イベント情報保存中にエラーが発生しました","イベント情報保存中にエラーが発生しました","イベント情報保存中にエラーが発生しました",1
-132,"event_destroy_error",3,"イベント情報の削除中にエラーが発生しました","イベント情報の削除中にエラーが発生しました","イベント情報の削除中にエラーが発生しました","イベント情報の削除中にエラーが発生しました",1
-133,"mils_name",1,"マイルストーン名","マイルストーン名","マイルストーン名","milestone name",1
-134,"event_name",1,"イベント名","イベント名","イベント名","event name",1
-135,"dose_not_match_password",3,"パスワードが一致しません","パスワードが一致しません","パスワードが一致しません","パスワードが一致しません",1
-136,"too_short",3,"は最低%d文字以上で入力してください","は最低%d文字以上で入力してください","は最低%d文字以上で入力してください","は最低%d文字以上で入力してください",1
-137,"has_already_been_taken",3,"は既に使用されています","は既に使用されています","は既に使用されています","は既に使用されています",1
-138,"result",1,"成果物","成果物","成果物","results",1
-139,"main_user_id",1,"主担当者","主担当者","主担当者","main user",1
-140,"report_date",1,"報告日","報告日","報告日","reported",1
-141,"complete",1,"完了","完了","完了","complete",1
-142,"project_index",1,"Dashboard","Dashboard","Dashboard","Dashboard",1
-143,"project_list_wbs",1,"WBS","WBS","WBS","WBS",1
-144,"project_list_gantt",1,"Gantt","Gantt","Gantt","Gantt",1
-145,"project_list_calendar2",1,"Calendar","Calendar","Calendar","Calendar",1
-146,"user_edit",1,"アカウント","アカウント","アカウント","account",1
-147,"project_new",1,"プロジェクト追加","プロジェクト追加","プロジェクト追加","プロジェクト追加",1
-148,"project_edit",1,"プロジェクト編集","プロジェクト編集","プロジェクト編集","プロジェクト編集",1
-149,"project_edit_active",1,"プロジェクトセレクタ","プロジェクトセレクタ","プロジェクトセレクタ","プロジェクトセレクタ",1
-150,"icon_today",1,"当日タスク","当日タスク","当日タスク","当日タスク",1
-151,"icon_date_pick",1,"日付選択","日付選択","日付選択","日付選択",1
-152,"icon_priority_high",1,"高優先度","高優先度","高優先度","高優先度",1
-153,"icon_priority_low",1,"低優先度","低優先度","低優先度","低優先度",1
-154,"icon_close_tab",1,"タブを閉じる","タブを閉じる","タブを閉じる","タブを閉じる",1
-155,"btn_destroy",1,"削除する","削除する","削除する","削除する",1
-156,"btn_save",1,"保存する","保存する","保存する","保存する",1
-157,"btn_close",1,"閉じる","閉じる","閉じる","閉じる",1
-158,"btn_select",1,"選択する","選択する","選択する","選択する",1
-159,"wbs_icon_prefix_class",1,"分類","分類","分類","分類",1
-160,"wbs_icon_prefix_task_low",1,"タスク(低)","タスク(低)","タスク(低)","タスク(低)",1
-161,"wbs_icon_prefix_task_high",1,"タスク(高)","タスク(高)","タスク(高)","タスク(高)",1
-162,"wbs_icon_prefix_task",1,"タスク","タスク","タスク","task",1
-163,"wbs_icon_prefix_milestone",1,"マイルストーン","マイルストーン","マイルストーン","milestone",1
-164,"wbs_icon_prefix_event",1,"イベント","イベント","イベント","event",1
-165,"log_kbn_1",1,"%s %s %s追加されました。","%s %s %s追加されました。","%s %s %s追加されました。","%s %s %s追加されました。",1
-166,"log_kbn_2",1,"%s %s %s変更されました。","%s %s %s変更されました。","%s %s %s変更されました。","%s %s %s変更されました。",1
-167,"log_kbn_3",1,"%s %s %s削除されました。","%s %s %s削除されました。","%s %s %s削除されました。","%s %s %s削除されました。",1
-168,"log_kbn_4",1,"%s %s %s報告されました。","%s %s %s報告されました。","%s %s %s報告されました。","%s %s %s報告されました。",1
-169,"log_kbn_5",1,"%s %s %sが完了しました。","%s %s %sが完了しました。","%s %s %sが完了しました。","%s %s %sが完了しました。",1
-170,"skype_id",1,"スカイプID","スカイプID","スカイプID","SkypeID",1
-171,"skype_status",1,"スカイプステータス","スカイプステータス","スカイプステータス","Skype status",1
-172,"fname",1,"ファイル名","ファイル名","ファイル名","file name",1
-173,"size",1,"サイズ","サイズ","サイズ","size",1
-174,"mtime",1,"更新日時","更新日時","更新日時","last updated",1
-175,"uploadfile",1,"アップロード","アップロード","アップロード","upload",1
-176,"newfolder",1,"フォルダ作成","フォルダ作成","フォルダ作成","create folder",1
-177,"destroyfile",1,"削除","削除","削除","delete",1
-178,"refresh",1,"最新の情報に更新","最新の情報に更新","最新の情報に更新","reload",1
-179,"upload_file",1,"ファイル","ファイル","ファイル","file",1
-180,"upload_confirm",2,"このファイルをアップロードします。よろしいですか？","このファイルをアップロードします。よろしいですか？","このファイルをアップロードします。よろしいですか？","このファイルをアップロードします。よろしいですか？",1
-181,"error_parameter",3,"パラメータの指定に誤りがあります。","パラメータの指定に誤りがあります。","パラメータの指定に誤りがあります。","パラメータの指定に誤りがあります。",1
-182,"file_already_exist",3,"指定されたファイル名は既に存在します。別の名前を指定してください。","指定されたファイル名は既に存在します。別の名前を指定してください。","指定されたファイル名は既に存在します。別の名前を指定してください。","指定されたファイル名は既に存在します。別の名前を指定してください。",1
-183,"file_already_exist",2,"既に同じファイル名が存在しています。上書きしますか？","既に同じファイル名が存在しています。上書きしますか？","既に同じファイル名が存在しています。上書きしますか？","既に同じファイル名が存在しています。上書きしますか？",1
-184,"delete_confirm",2,"このファイルを削除します。よろしいですか？","このファイルを削除します。よろしいですか？","このファイルを削除します。よろしいですか？","このファイルを削除します。よろしいですか？",1
-185,"entry_file_exists",3,"フォルダにファイルが存在します。フォルダは空でないと削除できません。","フォルダにファイルが存在します。フォルダは空でないと削除できません。","フォルダにファイルが存在します。フォルダは空でないと削除できません。","フォルダにファイルが存在します。フォルダは空でないと削除できません。",1
-186,"files",1,"Files","Files","Files","Files",1
-187,"create_dir_confirm",2,"指定されたフォルダを作成します。よろしいですか？","指定されたフォルダを作成します。よろしいですか？","指定されたフォルダを作成します。よろしいですか？","指定されたフォルダを作成します。よろしいですか？",1
-188,"dir_name",1,"フォルダ名","フォルダ名","フォルダ名","folder name",1
-189,"downloadfile",1,"ダウンロード","ダウンロード","ダウンロード","download",1
-190,"invite_project_mail_subject",1,"【9arrows】プロジェクトへメンバー召集されました","【9arrows】プロジェクトへメンバー召集されました","【9arrows】プロジェクトへメンバー召集されました","[9arrows] You were invited as a project member",1
-191,"folder_already_exist",3,"指定されたフォルダ名は既に存在します。別の名前を指定してください。","指定されたフォルダ名は既に存在します。別の名前を指定してください。","指定されたフォルダ名は既に存在します。別の名前を指定してください。","The folder name is already existed.  Rename it.",1
-192,"select_sheet_trigger",1,"シートを選択","シートを選択","シートを選択","select sheet",1
+57,"memo",1,"Memo","メモ","备忘","Memo",1
+58,"progress_kbn",1,"Progress Status","進捗状況","进度","Progress Status",1
+59,"cant_be_empty",3,"is required","は必須入力です。","必须输入","is required",1
+60,"in_not_included",3,"Value is out of range","の値が範囲外です。","超出范围","Value is out of range",1
+61,"add_projectclass",1,"Add a category","分類を追加する","增加项目类别","Add a category",1
+62,"class_name",1,"Category Name","分類名","类别","Category Name",1
+63,"item_name_task",1,"Task name","タスク名","任务名称","Task name",1
+64,"class_word1",1,"Category 1","大分類","类别1","Category 1",1
+65,"class_word2",1,"Category 2","中分類","类别2","Category 2",1
+66,"class_word3",1,"Category 3","小分類","类别3","Category 3",1
+67,"milestone",1,"Milestone","マイルストーン","里程碑","Milestone",1
+68,"mils_date",1,"Date","日付","日期","Date",1
+69,"event",1,"Event","イベント","事件","Event",1
+70,"start_datetime",1,"Start Date Time","開始日時","开始时间","Start Date Time",1
+71,"end_datetime",1,"End Date Time","終了日時","结束时间","End Date Time",1
+72,"place",1,"Locations","場所","地点","Location",1
+73,"content",1,"Memo","メモ","备忘","Memo",1
+74,"login",1,"Login","ログイン","登入","Login",1
+75,"signup",1,"Sign up","サインアップ","注册","Signup",1
+76,"email",1,"E-mail","メールアドレス","电子邮箱","E-mail",1
+77,"password",1,"Password","パスワード","密码","Password",1
+78,"confirm_password",1,"Password confirmation","パスワード（確認）","密码确认","Password confirmation",1
+79,"user_name",1,"Your Name","お名前","姓名","Your Name",1
+80,"to_signup",1,"Sign up","新規ユーザー登録","新用户注册","Sign up",1
+81,"user_login_id",1,"Account","ログインID","帐号","Account",1
+82,"class_word",1,"Category","分類","分类","Category",1
+83,"main_user_abb",1,"Main","主","主","Main",1
+84,"destroy_confirm",2,"Are you sure to delete?","この情報を削除します。よろしいですか？","确认删除吗？","Are you sure to delete?",1
+85,"edit_project",1,"Save Project","プロジェクトの変更","更改项目","Save Project",1
+86,"destroy_project",1,"Delete Project","プロジェクトの削除","删除项目","Delete Project",1
+87,"reissue_password",1,"Forgot Password","パスワード再発行","忘记密码","Forgot Password",1
+88,"signup_mail_subject",1,"Blackbolt Registration Confirmation","9arrowsユーザー登録完了通知","Blackbolt注册确认","Blackbolt Registration Confirmation",1
+89,"edit_user",1,"Edit User","ユーザー情報の変更","用户信息变更","Edit User",1
+90,"invite_mail_subject",1,"[BLACKBOLT] invitation from task dispatcher ","プロジェクト管理ツール【9arrows】へ招待されました","[BLACKBOLT] invitation from task dispatcher","[BLACKBOLT] invitation from task dispatcher",1
+91,"logout",1,"Logout","ログアウト","退出","Logout",1
+92,"myprofile",1,"Account","アカウント","帐号","Account",1
+93,"project_leader",1,"Project Leader","プロジェクトリーダー","项目领导","Project Leader",1
+94,"submenu_dashboard",1,"DashBoard","DashBoard","DashBoard","DashBoard",1
+95,"submenu_wbs",1,"WBS","WBS","WBS","WBS",1
+96,"submenu_calendar",1,"Calendar","Calendar","Calendar","Calendar",1
+97,"add_tab",1,"Add","タブ追加","Add","Add",1
+98,"del_tab",1,"Delete","タブ削除","Delete","Delete",1
+99,"confirmation",1,"Confirm","確認","确认","Confirm",1
+100,"report",1,"Report","報告","报告","Report",1
+101,"end_user_name",1,"Customer","エンドユーザー名","Customer","Customer",1
+102,"submenu_gantt",1,"Gantt","Gantt","Gantt","Gantt",1
+103,"wbs",1,"WBS","WBS","WBS","WBS",1
+104,"month",1,"Month","月","月","Month",1
+105,"year",1,"Year","年","年","Year",1
+106,"all",1,"All","全て","全部","All",1
+107,"all_member",1,"All member","全員","所有成员","All member",1
+108,"task_lineno_save_error",3,"An error occurred while saving task information","タスク情報保存中にエラーが発生しました","An error occurred while saving task information","An error occurred while saving task information",1
+109,"range_compare_invalid",3,"Error specifying","の指定に誤りがあります","Error specifying","Error specifying",1
+110,"start_date",1,"Start Date","開始日","开始日期","Start Date",1
+111,"not_numeric",3,"Input must be numeric","は数値でなければいけません","Input Must be numeric","Input must be numeric",1
+112,"too_long",3,"Please enter a maximum of %d characters","は最大%d文字で入力してください","Please enter a maximum of %d characters","Please enter a maximum of %d characters",1
+113,"format_invalid",3,"Incorrect format","の形式に誤りがあります","Incorrect format","Incorrect format",1
+114,"end_date",1,"End Date","終了日","结束日期","End Date",1
+115,"task_destroy_error",3,"An error occurred while deleting the task","タスク情報の削除中にエラーが発生しました","An error occurred while deleting the task","An error occurred while deleting the task",1
+116,"milestone_lineno_save_error",3,"An error occurred while saving Milestone","マイルストーン情報保存中にエラーが発生しました","An error occurred while saving Milestone","An error occurred while saving Milestone",1
+117,"milestone_destroy_error",3,"An error occurred while deleting Milestone","マイルストーン情報の削除中にエラーが発生しました","An error occurred while deleting Milestone","An error occurred while deleting Milestone",1
+118,"event_lineno_save_error",3,"An error occurred while saving event","イベント情報保存中にエラーが発生しました","An error occurred while saving event","An error occurred while saving event",1
+119,"event_destroy_error",3,"An error occurred while removing Events","イベント情報の削除中にエラーが発生しました","An error occurred while removing Events","An error occurred while removing Events",1
+120,"mils_name",1,"Milestone Name","マイルストーン名","Milestone Name","Milestone Name",1
+121,"event_name",1,"Event Name","イベント名","Event Name","Event Name",1
+122,"dose_not_match_password",3,"Password not matched","パスワードが一致しません","Password not matched","Password not matched",1
+123,"too_short",3,"Please enter at least % d characters or more","は最低%d文字以上で入力してください","Please enter at least % d characters or more","Please enter at least % d characters or more",1
+124,"has_already_been_taken",3,"has already been used","は既に使用されています","has already been used","has already been used",1
+125,"result",1,"Results","成果物","Results","Results",1
+126,"main_user_id",1,"Main Responsible Person","主担当者","主负责人","Main Responsible Person",1
+127,"report_date",1,"Reported on","報告日","报告于","Reported on",1
+128,"complete",1,"Complete","完了","完成","Complete",1
+129,"project_index",1,"Dashboard","Dashboard","Dashboard","Dashboard",1
+130,"project_list_wbs",1,"WBS","WBS","WBS","WBS",1
+131,"project_list_gantt",1,"Gantt","Gantt","Gantt","Gantt",1
+132,"project_list_calendar2",1,"Calendar","Calendar","Calendar","Calendar",1
+133,"user_edit",1,"Account","アカウント","Account","Account",1
+134,"project_new",1,"Add Project","プロジェクト追加","Add Project","Add Project",1
+135,"project_edit",1,"Edit Project","プロジェクト編集","Edit Project","Edit Project",1
+136,"project_edit_active",1,"Project Edit Active","プロジェクトセレクタ","Project Edit Active","Project Edit Active",1
+137,"icon_today",1,"Dealine Today!","当日タスク","最后期限今天","Dealine Today!",1
+138,"icon_date_pick",1,"Date Selection","日付選択","Date Selection","Date Selection",1
+139,"icon_priority_high",1,"High Priority","高優先度","高优先权","High Priority",1
+140,"icon_priority_low",1,"Low Priority","低優先度","低优先权","Low Priority",1
+141,"icon_close_tab",1,"Close","タブを閉じる","关闭","Close",1
+142,"btn_destroy",1,"Remove","削除する","删除","Remove",1
+143,"btn_save",1,"Save","保存する","保存","Save",1
+144,"btn_close",1,"Close","閉じる","关闭","Close",1
+145,"btn_select",1,"Select","選択する","选择","Select",1
+146,"wbs_icon_prefix_class",1,"Category","分類","分类","Category",1
+147,"wbs_icon_prefix_task_low",1,"Task(low)","タスク(低)","任务(低)","Task(low)",1
+148,"wbs_icon_prefix_task_high",1,"Task(high)","タスク(高)","任务(高)","Task(high)",1
+149,"wbs_icon_prefix_task",1,"Task","タスク","任务","Task",1
+150,"wbs_icon_prefix_milestone",1,"Milestone","マイルストーン","里程碑","Milestone",1
+151,"wbs_icon_prefix_event",1,"Event","イベント","事件","Event",1
+152,"log_kbn_1",1,"%s %s %s added.","%s %s %s追加されました。","%s %s %s added.","%s %s %s added.",1
+153,"log_kbn_2",1,"%s %s %s changed.","%s %s %s変更されました。","%s %s %s changed.","%s %s %s changed.",1
+154,"log_kbn_3",1,"%s %s %s been removed.","%s %s %s削除されました。","%s %s %s been removed.","%s %s %s been removed.",1
+155,"log_kbn_4",1,"%s %s %s have been reported.","%s %s %s報告されました。","%s %s %s have been reported.","%s %s %s have been reported.",1
+156,"log_kbn_5",1,"%s %s %s completed.","%s %s %sが完了しました。","%s %s %s completed.","%s %s %s completed.",1
+157,"skype_id",1,"SkypeID","スカイプID","SkypeID","SkypeID",1
+158,"skype_status",1,"Skype status","スカイプステータス","Skype status","Skype status",1
+159,"fname",1,"File name","ファイル名","File name","File name",1
+160,"size",1,"Size","サイズ","Size","Size",1
+161,"mtime",1,"Last updated","更新日時","Last updated","Last updated",1
+162,"uploadfile",1,"Upload","アップロード","Upload","Upload",1
+163,"newfolder",1,"Create folder","フォルダ作成","创建","Create folder",1
+164,"destroyfile",1,"Delete","削除","删除","Delete",1
+165,"refresh",1,"Reload","最新の情報に更新","更新","Reload",1
+166,"upload_file",1,"File","ファイル","文件","File",1
+167,"upload_confirm",2,"Are you sure to upload file?","このファイルをアップロードします。よろしいですか？","Are you sure to upload file?","Are you sure to upload file?",1
+168,"error_parameter",3,"Parameter incorrect.","パラメータの指定に誤りがあります。","Parameter incorrect.","Parameter incorrect.",1
+169,"file_already_exist",3,"The specified file name already exists. Please specify a different name.","指定されたファイル名は既に存在します。別の名前を指定してください。","The specified file name already exists. Please specify a different name。","The specified file name already exists. Please specify a different name.",1
+170,"file_already_exist",2,"Same file name already exists. Overwrite?","既に同じファイル名が存在しています。上書きしますか？","Same file name already exists. Overwrite?","Same file name already exists. Overwrite?",1
+171,"delete_confirm",2,"Are you sure to delete this file?","このファイルを削除します。よろしいですか？","Are you sure to delete this file?","Are you sure to delete this file?",1
+172,"entry_file_exists",3,"There is a file folder. Empty folders can be deleted.","フォルダにファイルが存在します。フォルダは空でないと削除できません。","There is a file folder. Empty folders can be deleted.","There is a file folder. Empty folders can be deleted.",1
+173,"files",1,"Files","Files","Files","Files",1
+174,"create_dir_confirm",2,"Are you sure to create a folder?","指定されたフォルダを作成します。よろしいですか？","Are you sure to create a folder?","Are you sure to create a folder?",1
+175,"dir_name",1,"Folder name","フォルダ名","Folder name","Folder name",1
+176,"downloadfile",1,"Download","Download","ダウンロード","Download",1
+177,"invite_project_mail_subject",1,"[Blackbolt] You were invited as a project member","【Blackbolt】プロジェクトへメンバー召集されました","[Blackbolt] You were invited as a project member","[Blackbolt] You were invited as a project member",1
+178,"folder_already_exist",3,"The specified folder name already exists. Please specify a different name.","指定されたフォルダ名は既に存在します。別の名前を指定してください。","The specified folder name already exists. Please specify a different name.","The specified folder name already exists. Please specify a different name.",1
+179,"select_sheet_trigger",1,"Select sheet","シートを選択","Select sheet","Select sheet",1

@@ -18,7 +18,7 @@ components.projects.task_confirm_dialog = function(project_cd)
         container: 'projects_task_confirm_dialog',
         comp_id: null,
 
-        grid_list      : null, // グリッドエレメント
+        grid_list      : null, // Grid element
 
         // url
         load_url   : url_for('projects/' + project_cd + '/tasks/' + project_cd + '/confirms/new'),
@@ -49,7 +49,7 @@ components.projects.task_confirm_dialog = function(project_cd)
                 {header: app_localized_message('label', 'report_date'), width: 80, sortable: true, dataIndex: 'report_date'},
                 {header: app_localized_message('label', 'content'), width: 40, sortable: true, dataIndex: 'content', id:'content'},
                 {header: app_localized_message('label', 'progress_rate'), width: 60, sortable: true, dataIndex: 'progress_rate', align:'right'},
-                {header: "報告者", width: 60, sortable: true, dataIndex: 'report_user', id:'report_user'}
+                {header: "Reporter", width: 60, sortable: true, dataIndex: 'report_user', id:'report_user'}
             ]);
             this.grid_list = new Ext.grid.GridPanel({
                 el : this.container + '_grid',
@@ -59,7 +59,7 @@ components.projects.task_confirm_dialog = function(project_cd)
                 loadMask : true,
                 monitorResize : true ,
                 region: 'center',
-                title: 'タスク進捗',
+                title: 'Task Progress',
                 iconCls: 'icon-grid',
                 margins: '0 0 0 0'
             });
@@ -97,7 +97,7 @@ components.projects.task_confirm_dialog = function(project_cd)
         this.create_grid();
         this.create_panel();
 
-            // @TODO: ダイアログ表示の前処理
+            // @TODO: Preprocessing dialog display
             this.load_data();
         },
 
@@ -106,9 +106,9 @@ components.projects.task_confirm_dialog = function(project_cd)
         },
 
 	    /**
-	     * 関数名：fncDataSet
-	     * 概　要：入力フォームデータをセットする
-	     * 戻り値：なし
+	     * Function Name：fncDataSet
+	     * Overview：Set the data input form
+	     * Return Value：No
 	     */
 	    fncDataSet : function(data)
 	    {

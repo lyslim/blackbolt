@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, :confirmable
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :sap_name, :email, :password, :password_confirmation
+  attr_accessible :sap_name, :email, :password, :password_confirmation, :remember_me, :user_num, :first_name, :last_name, :id
+  validates_uniqueness_of :sap_name, :case_sensitive => false
+  validates_uniqueness_of :email
   
   # projects
   has_many :dat_projectusers, :foreign_key => 'user_id', :dependent => :destroy

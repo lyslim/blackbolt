@@ -25,9 +25,9 @@ components.projects.milestone_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "この情報でマイルストーンを作成します。\nよろしいですか？",
-            updated: "この情報でマイルストーンを更新します。\nよろしいですか？",
-            deleted: "このマイルストーンを削除します。\n本当によろしいですか？"
+            created: "Create a milestone with this information. \ n Are you sure?",
+            updated: "Update the information on this milestone. \ n Are you sure?",
+            deleted: "Delete this milestone. \ n Are you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';
@@ -48,7 +48,7 @@ components.projects.milestone_edit_dialog = function(project_cd)
         },
         set_elements: function()
         {
-            // @TODO: ダイアログ内のフォームエレメントの初期化処理
+            // @TODO: Initialization of the form elements in the dialog
             var ef = Ext.form;
             var m1 = 'dlg_mil_edit_miles' + '_';
             var m2 = 'dlg_mil_edit_comp' + '_';
@@ -57,35 +57,35 @@ components.projects.milestone_edit_dialog = function(project_cd)
             this.form_comp_id               = new ef.Hidden(m2+'id');
             this.form_task_kbn              = new ef.Hidden(m2+'task_kbn');
 
-            // マイルストーン
+            // Milestone
             this.form_item_name             = new ef.TextField({ applyTo: m2+'item_name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                                 allowBlank:false, blankText: 'マイルストーンは必須です。',
+                                                                 allowBlank:false, blankText: 'Milestone is required.',
                                                                  msgTarget: 'title'
                                                                });
-            // 日付
+            // Date
             this.form_mils_date             = new ef.DateField({ applyTo: m1+'mils_date', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title', format:"Y-m-d"
                                                                });
-            // 分類
+            // Classification
             this.form_class_word1           = new ef.TextField({ applyTo: m2+'class_word1', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
-            // 分類
+            // Classification
             this.form_class_word2           = new ef.TextField({ applyTo: m2+'class_word2', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
-            // 分類
+            // Classification
             this.form_class_word3           = new ef.TextField({ applyTo: m2+'class_word3', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
 
-            //チェックイベント
+            //Check Events
             this.form_item_name.on( 'invalid', invalid_alert, this );
 
         },
         reset_form: function()
         {
-            // @TODO: フォームリセット処理
+            // @TODO: Reset Form Processing
             this.comp_id = null;
             $('#' + this.container + '_destroy').css("display","none");
             this.form_milestone_id.setRawValue('');
@@ -117,17 +117,17 @@ components.projects.milestone_edit_dialog = function(project_cd)
             this.form_class_word3.setRawValue(projectcomp.class_word3 || '');
         },
         validate: function() {
-            // @TODO: 入力チェック
+            // @TODO: Input check
             return this.form_item_name.validate() ? true : false;
         },
         onBeforeShow: function()
         {
-            // @TODO: ダイアログ表示の前処理
+            // @TODO: Preprocessing dialog display
             this.load_data();
         },
         onBeforeHide: function()
         {
-            // @TODO: ダイアログを閉じる前の処理
+            // @TODO: Before you close the dialog process
             this.reset_form();
         },
 
@@ -213,7 +213,7 @@ components.projects.milestone_edit_dialog = function(project_cd)
          * Destroy
          */
         destroy: function() {
-            // @TODO: データ削除処理
+            // @TODO: Data removal process
             if (confirm(this.messages.deleted)) {
                 var url = this.data_url.replace('{:id}', this.comp_id);
                 var opt = {

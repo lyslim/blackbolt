@@ -99,14 +99,14 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：fncCreateFolderTree
-         * 概　要：フォルダツリーを生成する
-         * 引　数：なし
-         * 戻り値：なし
+         * Function Name：fncCreateFolderTree
+         * Overview		：Generate Folder
+         * Argument		：No
+         * Return value	：No
          ==================================================*/
         fncCreateFolderTree : function(){
             //-----------------------------
-            // ツリー生成
+            // Tree generation
             //-----------------------------
             this.tree_loader = new Ext.tree.TreeLoader({
                 dataUrl       : this.store_url_fo,
@@ -133,21 +133,21 @@ components.projects.files_grid = function(p_cd, p_name)
 
             this.tree_folder.addListener( "click", this.onNodeClick, this, null ) ;
 
-            // グリッド右クリックイベント
+            // Right-click event grids
             this.tree_folder.on( "contextmenu", this.onRowContextMenu, this ) ;
 
             //-----------------------------
-            // コンテキストメニュー生成
+            // Context menu generation
             //-----------------------------
             this.ctxMenu = new Ext.menu.Menu({id: this.tree_folder.id + "-hctx"});
             this.ctxMenu.add(
-                {id:"row_folder_edit", text: "名前の変更", cls: "grid-ctx-menu-edit"},
-                {id:"row_folder_delete", text: "削除", cls: "grid-ctx-menu-delete"}
+                {id:"row_folder_edit", text: "Name change", cls: "grid-ctx-menu-edit"},
+                {id:"row_folder_delete", text: "Delete", cls: "grid-ctx-menu-delete"}
             );
             this.ctxMenu.on("itemclick", this.onCtxMenuClick, this);
 
             //-----------------------------
-            // ディフォルトコンテキストメニュー生成
+            // 
             //-----------------------------
             this.ctxMenu_difolt = new Ext.menu.Menu({id: this.tree_folder.id + "-hctx2"});
             this.ctxMenu_difolt.add(
@@ -159,11 +159,11 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：onNodeClick
-         * 概　要：フォルダツリーノードクリックイベントハンドラ
-         * 引　数： node            Ext.tree.TreeNode        ツリーノードオブジェクト
-         *             e                Ext.EventObject             イベントオブジェクト
-         * 戻り値：なし
+         * Function Name：onNodeClick
+         * Overview		：
+         * Argument		： node            Ext.tree.TreeNode        
+         *             	  e               Ext.EventObject             
+         * Return Value	：No
          ==================================================*/
         onNodeClick : function( node,  e){
             this.current_node = node.id ;
@@ -171,12 +171,12 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：onRowContextMenu
-         * 概　要：グリッドコンテキストメニュー（右クリック）イベントハンドラ
-         * 引　数：grid              Ext.grid.Grid                  グリッドオブジェクト
-         *       ：rowIndex          Number                         クリック行インデックス
-         *       ：e                 Ext.EventObject                イベントオブジェクト
-         * 戻り値：なし
+         * Function Name：onRowContextMenu
+         * Overview		：
+         * Argument		：grid              Ext.grid.Grid                 
+         *       		：rowIndex          Number                         
+         *       		：e                 Ext.EventObject                
+         * Return Value：No
          ==================================================*/
         onRowContextMenu : function(node, e ){
             e.stopEvent();
@@ -190,32 +190,32 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：onCtxMenuClick
-         * 概　要：コンテキストメニュークリックイベントハンドラ
-         * 引　数：baseItem          Ext.menu.BaseItem              クリックされたアイテムオブジェクト
-         *       ：e                 Ext.EventObject                イベントオブジェクト
-         * 戻り値：なし
+         * Function Name：onCtxMenuClick
+         * Overview		：
+         * Argument		：baseItem          Ext.menu.BaseItem              
+         *       		：e                 Ext.EventObject               
+         * Return Value：No
          ==================================================*/
         onCtxMenuClick : function(baseItem, e){
             switch( baseItem.id ){
-                case 'row_folder_edit'     : this.fncInsideFolderEdit(); break ;// フォルダ名編集
-                case 'row_folder_delete'   : this.fncGetInsideIdToDestroy(); break ;// 削除
+                case 'row_folder_edit'     : this.fncInsideFolderEdit(); break ;// Edit the folder name
+                case 'row_folder_delete'   : this.fncGetInsideIdToDestroy(); break ;// Delete
             }
         },
 
         /*==================================================
-         * 関数名：onTreeBeforeLoad
-         * 概　要：フォルダツリーロード前イベントハンドラ
-         * 引　数： treeloader     Ext.tree.TreeLoader     ツリーローダーオブジェクト
-         *             node            Ext.tree.TreeNode        ツリーノードオブジェクト
-         *             e                Ext.EventObject             イベントオブジェクト
-         * 戻り値：なし
+         * Function Name：onTreeBeforeLoad
+         * Overview		：
+         * Argument		： treeloader     Ext.tree.TreeLoader     
+         *             	: node            Ext.tree.TreeNode        
+         *             	: e                Ext.EventObject             
+         * Return Value：No
          ==================================================*/
         onTreeBeforeLoad : function( treeloader, node, callback  ){
             treeloader.baseParams.file_folder_id = node.attributes.id;
         },
 
-        //submenuリスト用
+        //submenu for a list
         fncInsideFolderEdit : function(){
             var selmdl = this.tree_folder.getSelectionModel() ;
             var selnode = selmdl.getSelectedNode() ;
@@ -235,14 +235,14 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：fncCreateFileList
-         * 概　要：ファイルリストを生成する
-         * 引　数：なし
-         * 戻り値：なし
+         * Function Name：fncCreateFileList
+         * Overview		：Generate a list of files
+         * Argument		：No
+         * Return Value	：No
          ==================================================*/
         fncCreateFileList : function(){
             //-----------------------------
-            // グリッドデータストア生成
+            // Grid data store generation
             //-----------------------------
             this.ds_list = new Ext.data.JsonStore({
                 root: "items",
@@ -257,7 +257,7 @@ components.projects.files_grid = function(p_cd, p_name)
             });
 
             //-----------------------------
-            // カラムモデル生成
+            // Column model generation
             //-----------------------------
             var colModel = new Ext.grid.ColumnModel([
                 {header: app_localized_message("label", "fname"), width: 200, locked:false, sortable: true, dataIndex: 'fname', id:'fname', renderer: this.onFnameRenderer.createDelegate(this)},
@@ -266,7 +266,7 @@ components.projects.files_grid = function(p_cd, p_name)
             ]);
 
             //-----------------------------
-            // グリッド生成
+            // Grid Generation
             //-----------------------------
             this.grid_list = new Ext.grid.GridPanel({
                 el : 'file_index_file',
@@ -283,21 +283,21 @@ components.projects.files_grid = function(p_cd, p_name)
             this.grid_list.addListener( "contextmenu", this.onGridContextMenu, this, null ) ;
             this.grid_list.addListener( "dblclick", this.onGridDbclick, this, null ) ;
 
-            // コンテキストメニュー生成
+            // Context menu generation
             this._createCenterContextMenu();
 
         },
 
         /*==================================================
-         * 関数名：onFnameRenderer
-         * 概　要：ファイル名レンダラー
-         * 引　数：value            Mixed                       アイテム名データ
-         *       ：phash            Hash　                      セル情報
-         *       ：rec              Ext.data.Record             行データオブジェクト
-         *       ：rowIndex         Number                      行インデックス
-         *       ：cellIndex        Number                      列インデックス
-         *       ：datastore        Ext.data.JsonStore          データストアオブジェクト
-         * 戻り値：なし
+         * Function Name：onFnameRenderer
+         * Overview		：Renderer File name
+         * Argument		：value            Mixed                       Data item name
+         *       		：phash            Hash　                      			   Cell Information
+         *       		：rec              Ext.data.Record             Data object row
+         *       		：rowIndex         Number                      Row index
+         *       		：cellIndex        Number                      Column index
+         *       		：datastore        Ext.data.JsonStore          DataStore
+         * Return Value	：No
          ==================================================*/
         onFnameRenderer : function(value, phash, rec, rowIndex, cellIndex, datastore){
             var image ="" ;
@@ -313,15 +313,15 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：onNumberRenderer
-         * 概　要：数値レンダラー
-         * 引　数：value            Mixed                       アイテム名データ
-         *       ：phash            Hash　                      セル情報
-         *       ：rec              Ext.data.Record             行データオブジェクト
-         *       ：rowIndex         Number                      行インデックス
-         *       ：cellIndex        Number                      列インデックス
-         *       ：datastore        Ext.data.JsonStore          データストアオブジェクト
-         * 戻り値：なし
+         * Function Name：onNumberRenderer
+         * Overview		：Numerical renderer
+         * Argument		：value            Mixed                       
+         *       		：phash            Hash　                      				
+         *       		：rec              Ext.data.Record             
+         *       		：rowIndex         Number                      
+         *       		：cellIndex        Number                      
+         *       		：datastore        Ext.data.JsonStore          
+         * Return Value	：No
          ==================================================*/
         onNumberRenderer : function(value, phash, rec, rowIndex, cellIndex, datastore){
             var ret = money_format(value) ;
@@ -329,15 +329,15 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：onDateRenderer
-         * 概　要：日付レンダラー
-         * 引　数：value            Mixed                       アイテム名データ
-         *       ：phash            Hash　                      セル情報
-         *       ：rec              Ext.data.Record             行データオブジェクト
-         *       ：rowIndex         Number                      行インデックス
-         *       ：cellIndex        Number                      列インデックス
-         *       ：datastore        Ext.data.JsonStore          データストアオブジェクト
-         * 戻り値：なし
+         * Function Name：onDateRenderer
+         * Overview		：Date Renderer
+         * Argument		：value            Mixed                       
+         *       		：phash            Hash　                      
+         *       		：rec              Ext.data.Record             
+         *       		：rowIndex         Number                      
+         *       		：cellIndex        Number                      
+         *       		：datastore        Ext.data.JsonStore          
+         * Return Value	：No
          ==================================================*/
         onDateRenderer : function(value, phash, rec, rowIndex, cellIndex, datastore){
             var ret = onDateChange(value) ;
@@ -345,7 +345,7 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /** onGridRowContextMenu
-         * フォルダ，ファイルの一覧のアイテムの右クリックメニュー
+         * Folder, right-click menu item in the list of files
          * 
          * @param Ext.grid.ColumnModel grid
          * @param Int rowIndex
@@ -364,19 +364,19 @@ components.projects.files_grid = function(p_cd, p_name)
 
             var ftype = rec.get("ftype");
             if( ftype == "directory"){
-                this.ctxMenu_folder.showAt(pos);// フォルダコンテキストメニューを開く
+                this.ctxMenu_folder.showAt(pos);// 
             } else {
-                this.ctxMenu_file.showAt(pos);// ファイルコンテキストメニューを開く
+                this.ctxMenu_file.showAt(pos);// 
             }
         },
 
         /** onGridContextMenu
-         * 何もないところを右クリックされたときの動作
+         * What happens when I right-clicked nothing
          */
         onGridContextMenu : function(e) {
             e.stopEvent();
             var pos = e.getXY();
-            this.ctxMenu_none.showAt(pos);// デフォルトコンテキストメニューを開く
+            this.ctxMenu_none.showAt(pos);// 
         },
 
         onGridDbclick : function(){
@@ -387,7 +387,7 @@ components.projects.files_grid = function(p_cd, p_name)
 
             var ftype = selrec.get("ftype");
             if( ftype == "directory"){
-                // フォルダに入る
+                // Into folders
                 this.current_node = id + '/' ;
 
                 var selnode = this.tree_folder.getNodeById(this.current_node) ;
@@ -398,32 +398,32 @@ components.projects.files_grid = function(p_cd, p_name)
                 this.load_data() ;
 
             } else {
-                // ファイルをダウンロード
+                // Download
                 this.fncDownloadFile();
             }
 
         },
 
         /**
-         * コンテキストメニュー生成
+         * Context menu generation
          */
         _createCenterContextMenu : function()
         {
-            // フォルダ用
+            // Folder for
             this.ctxMenu_folder = new Ext.menu.Menu({id: this.tree_folder.id + "-hctx-folder"});
             this.ctxMenu_folder.add(
-                {id:"row_folder_edit", text: "名前の変更", cls: "grid-ctx-menu-edit"},
-                {id:"row_folder_delete", text: "削除", cls: "grid-ctx-menu-delete"}
+                {id:"row_folder_edit", text: "Name Change", cls: "grid-ctx-menu-edit"},
+                {id:"row_folder_delete", text: "Delete", cls: "grid-ctx-menu-delete"}
             );
             this.ctxMenu_folder.on("itemclick", this.onGridRowContextMenuClick_folder, this);
 
-            // ファイル用
+            // Files for
             this.ctxMenu_file = new Ext.menu.Menu({id: this.grid_list.id + "-hctx-file"});
             this.ctxMenu_file.add(
                 {id:"downloadfile", text: app_localized_message("label", "downloadfile"), cls: "grid-ctx-menu-download"},
                 {id:"destroyfile", text: app_localized_message("label", "destroyfile"), cls: "grid-ctx-menu-destroy"}
             );
-            this.ctxMenu_file.on("itemclick", this.onGridRowContextMenuClick_file, this);// ファイル用
+            this.ctxMenu_file.on("itemclick", this.onGridRowContextMenuClick_file, this);// 
 
             // 空白部分
             this.ctxMenu_none = new Ext.menu.Menu({id: this.grid_list.id + "-hctx-none"});
@@ -432,7 +432,7 @@ components.projects.files_grid = function(p_cd, p_name)
                 {id:"row_none_file_new", text: app_localized_message("label", "uploadfile"), cls: "grid-ctx-menu-upload"},
                 {id:"refresh", text: app_localized_message("label", "refresh"), cls: "grid-ctx-menu-refresh"}
             );
-            this.ctxMenu_none.on("itemclick", this.onGridRowContextMenuClick_none, this);// ファイル用
+            this.ctxMenu_none.on("itemclick", this.onGridRowContextMenuClick_none, this);// 
         },
 
         onGridRowContextMenu_select : function(rec, rowIndex, e)
@@ -473,7 +473,7 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /** onGridRowContextMenuClick_folder
-         * ファイルコンテキストメニュークリック時の動作
+         * 
          * 
          * @param Hash
          * @param Ext.EventObject
@@ -481,8 +481,8 @@ components.projects.files_grid = function(p_cd, p_name)
         onGridRowContextMenuClick_folder : function(item, e)
         {
             switch(item.id){
-                case 'row_folder_delete'   : this.fncGetIdToDestroy(); break ;// 削除
-                case 'row_folder_edit'     : this.fncFolderEdit(); break ;// フォルダ名編集
+                case 'row_folder_delete'   : this.fncGetIdToDestroy(); break ;// 
+                case 'row_folder_edit'     : this.fncFolderEdit(); break ;// 
             }
         },
 
@@ -513,27 +513,27 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：fncFolderNew
-         * 概　要：ファイルフォルダ情報登録ダイアログを表示する
-         * 引　数：なし
-         * 戻り値：なし
+         * Function Name：fncFolderNew
+         * Overview：Prompting for file folders information
+         * Argument：No
+         * Return Value：No
          ==================================================*/
         fncFolderNew : function(){
             var selmdl = this.tree_folder.getSelectionModel() ;
             var selnode = selmdl.getSelectedNode() ;
             if (selnode.id == '0') this.current_node = 0;
             
-            // 現在のパスを取得
+            // Get the current path
             var node = this.current_node ;
 
             $mo.fire('open_projects_folder_edit_dialog', {parent_node: node, fname : null});
         },
 
         /*==================================================
-         * 関数名：fncFolderEdit
-         * 概　要：mainリスト用
-         * 引　数：なし
-         * 戻り値：なし
+         * Function Name：fncFolderEdit
+         * Overview：for the main list
+         * Argument：No
+         * Return Value：No
          ==================================================*/
         fncFolderEdit : function(){
             var selmodel = this.grid_list.getSelectionModel() ;
@@ -544,19 +544,19 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         fncDoEditFolder : function(id, fname){
-            // 現在のパスを取得
+            // Get the current path
             var node = this.current_node ;
             $mo.fire('open_projects_folder_edit_dialog', {parent_node: node, fname: fname, folder_id: id});
         },
 
         /*==================================================
-         * 関数名：fncFileNew
-         * 概　要：ファイル情報登録ダイアログを表示する
-         * 引　数：なし
-         * 戻り値：なし
+         * Function Name：fncFileNew
+         * Overview：Prompting for File Info
+         * Argument：No
+         * Return Value：No
          ==================================================*/
         fncFileNew : function(){
-            // 現在のパスを取得
+            // Get the current path
             var node = this.current_node ;
             $mo.fire('open_projects_file_edit_dialog', {parent_node: node});
 
@@ -571,7 +571,7 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         fncDestroyFile : function(id){
-            // @TODO: データ削除処理
+            // @TODO: Data removal process
             if (confirm(this.messages.deleted)) {
                 Ext.get('file_target_file').dom.value = id;
                 var url = this.item_url_fi.replace('{:id}', '000');
@@ -605,10 +605,10 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：fncCreateLeftLayout
-         * 概　要：当該ページの左側エリアレイアウトを生成する
-         * 引　数：なし
-         * 戻り値：なし
+         * Function Name：fncCreateLeftLayout
+         * Overview：The left side of the page to generate layout
+         * Argument：No
+         * Return Value：No
          ==================================================*/
         fncCreateLeftLayout : function(){
             var elmmain = Ext.get( 'file_index_folder_area') ;
@@ -624,10 +624,10 @@ components.projects.files_grid = function(p_cd, p_name)
         },
 
         /*==================================================
-         * 関数名：fncCreateCenterLayout
-         * 概　要：当該ページの中央エリアレイアウトを生成する
-         * 引　数：なし
-         * 戻り値：なし
+         * Function Name：fncCreateCenterLayout
+         * Overview：The center of the page to generate layout
+         * Argument：No
+         * Return Value：No
          ==================================================*/
         fncCreateCenterLayout : function(){
             var elmmain = Ext.get( 'file_index_file_area') ;

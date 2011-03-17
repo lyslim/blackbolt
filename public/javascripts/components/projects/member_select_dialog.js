@@ -41,13 +41,13 @@ components.projects.member_select_dialog = function(project_cd)
         create_store: function()
         {
             //-----------------------------
-            // カラムモデル生成
+            // Column model generation
             //-----------------------------
-            // カラム情報
+            // Column Information
             var cols = new Array() ;
             this.fields = new Array() ;
             if( this.select_multi ){
-                // マルチ選択の場合は、チェックボックスを表示
+                // If you choose multi-display check boxes
                 var col = {
                     header:     app_localized_message("label", "charge_user"),
                     width:      50,
@@ -60,7 +60,7 @@ components.projects.member_select_dialog = function(project_cd)
                 this.fields.push( {name:"select_multi", mapping:"select_multi"} ) ;
                 
             }
-            // ユーザー名称
+            // User Name
             var col = {
                 header:     app_localized_message("label", "part_members"),
                 width:      100,
@@ -72,7 +72,7 @@ components.projects.member_select_dialog = function(project_cd)
             this.fields.push({name:"user_name", mapping:"user_name"}) ;
     
             if( this.select_multi ){
-                // シングル選択も指定の場合は、ラジオボタンを表示
+                // Also specify if a single choice, radio buttons
                 if( this.select_single ){
                     var col = {
                         header:     app_localized_message("label", "main_user"),
@@ -99,7 +99,7 @@ components.projects.member_select_dialog = function(project_cd)
         },
         create_grid: function()
         {
-            //毎回ダイアログ開く時に作るので、クリアします。
+            //Upon opening the dialog every time I make clear.
             Ext.get(this.container + '_grid').dom.innerHTML = '';
             this.grid_list = new Ext.grid.GridPanel({
                 el : this.container + '_grid',
@@ -252,7 +252,7 @@ components.projects.member_select_dialog = function(project_cd)
             this.create_grid();
             this.create_panel();
 
-            // @TODO: ダイアログ表示の前処理
+            // @TODO: Preprocessing dialog display
             this.load_data();
         },
 
@@ -264,7 +264,7 @@ components.projects.member_select_dialog = function(project_cd)
          * Load Data
          */
         load_data: function() {
-            // プロジェクトユーザーオブジェクト
+            // 
             this.single_row_index = null;
             this.select_multi_indexies = new Array();
             if(this.projectusers){

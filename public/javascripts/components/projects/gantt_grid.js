@@ -32,12 +32,12 @@ components.projects.gantt_grid = function(p_cd)
         order_url      : url_for('projects/' + p_cd + '/items/{:id}/item_order_update.json'),
 
         messages: {
-            deleted: "このセクションを削除します．\n本当によろしいですか？"
+            deleted: "Delete this section. \ n Are you sure?"
         },
 
-        grid_list      : null, // グリッドエレメント
-        selectedIndex  : -1, // 選択行インデックス
-        ctxMenu        : null, // コンテキストメニュー
+        grid_list      : null, // Grid element
+        selectedIndex  : -1, // Select the row index
+        ctxMenu        : null, // Context menu
 
         selectedIndex  : -1,
         daywidth       : 20,
@@ -313,15 +313,15 @@ components.projects.gantt_grid = function(p_cd)
         },
 
         /*
-         * 関数名：onItemNameRenderer
-         * 概　要：アイテム名レンダラー
-         * 引　数：value            Mixed                       アイテム名データ
-         *       ：phash            Hash　                      セル情報
-         *       ：rec              Ext.data.Record             行データオブジェクト
-         *       ：rowIndex         Number                      行インデックス
-         *       ：cellIndex        Number                      列インデックス
-         *       ：datastore        Ext.data.JsonStore          データストアオブジェクト
-         * 戻り値：セル表示内容文字列
+         * Function Name：onItemNameRenderer
+         * Overview：
+         * Argument：value            Mixed                       
+         *       ：phash            Hash　                      
+         *       ：rec              Ext.data.Record             
+         *       ：rowIndex         Number                      
+         *       ：cellIndex        Number                      
+         *       ：datastore        Ext.data.JsonStore          
+         * Return Value：Cell display content string
          */
         onItemNameRenderer : function(value, phash, rec, rowIndex, cellIndex, datastore){
             var alttext = "" ;
@@ -372,12 +372,12 @@ components.projects.gantt_grid = function(p_cd)
         },
         create_ctxmenu: function(){
             //-----------------------------
-            // コンテキストメニュー生成
+            // Context menu generation
             //-----------------------------
             this.ctxMenu = new Ext.menu.Menu({id: this.grid_list.id + "-hctx"});
             this.ctxMenu.add(
-                {id:"upitem", text: "上へ", cls: "grid-ctx-menu-up"},
-                {id:"downitem", text: "下へ", cls: "grid-ctx-menu-down"}
+                {id:"upitem", text: "Upへ", cls: "grid-ctx-menu-up"},
+                {id:"downitem", text: "Downへ", cls: "grid-ctx-menu-down"}
             );
             this.ctxMenu.on("itemclick", this.onCtxMenuClick, this);
         },
@@ -443,12 +443,12 @@ components.projects.gantt_grid = function(p_cd)
         },
 
         /*
-         * 関数名：onRowClick
-         * 概　要：グリッド行クリックイベントハンドラ
-         * 引　数：grid             Ext.grid.Grid               グリッドオブジェクト
-         *       ：rowIndex         Number                      クリック行インデックス
-         *       ：grid             Ext.EventObject             イベントオブジェクト
-         * 戻り値：なし
+         * Function Name：onRowClick
+         * Overview：
+         * Argument：grid             Ext.grid.Grid               
+         *       ：rowIndex         Number                      
+         *       ：grid             Ext.EventObject             
+         * Return Value：No
          */
         onRowClick : function(grid, rowIndex, e){
             var view = this.grid_list.getView();
@@ -458,12 +458,12 @@ components.projects.gantt_grid = function(p_cd)
         },
 
         /*
-         * 関数名：onRowDblClick
-         * 概　要：グリッド行ダブルクリックイベントハンドラ
-         * 引　数：grid             Ext.grid.Grid               グリッドオブジェクト
-         *       ：rowIndex         Number                      ダブルクリック行インデックス
-         *       ：grid             Ext.EventObject             イベントオブジェクト
-         * 戻り値：なし
+         * Function Name：onRowDblClick
+         * Overview		：
+         * Argument		：grid             Ext.grid.Grid              
+         *       		：rowIndex         Number                      
+         *       		：grid             Ext.EventObject             
+         * Return Value	：No
          */
         onRowDblClick : function(grid, rowIndex, e){
             this.selectedIndex = rowIndex ;
@@ -590,20 +590,20 @@ components.projects.gantt_grid = function(p_cd)
             
             if ( start_date && end_date) {
     
-                // 開始月の先頭日から描画
+                // Drawing from the date of the first month beginning
                 var start_date = Date.parseDate(start_date, "Y-m-d");
                 var start_dt   = new Date(start_date.getFullYear(), start_date.getMonth(), 1);
     
-                // 終了月の最終日まで描画
+                // Ending the last day of the month draws
                 var end_date = Date.parseDate(end_date, "Y-m-d");
                 var end_dt   = new Date(end_date.getFullYear(), end_date.getMonth(), end_date.getDaysInMonth());
     
-                // チャート幅算出
+                // Chart width calculation
                 var between         = start_dt.getElapsed(end_dt) ;
                 var betweendays     = between / 1000 / 60 / 60 / 24 ;
                 var ganttwidth      = (betweendays+1) * this.daywidth;
     
-                // チャートヘッダ生成
+                // Header generation chart
     
                 var header = '' ;
                 var header_row1 = "" ;
@@ -649,7 +649,7 @@ components.projects.gantt_grid = function(p_cd)
                 header_row1 += '<td style="padding:2px 4px 1px 4px;border-bottom:1px solid #cccccc;border-right:1px solid #cccccc;" colspan="'+ day_col_count +'">' + year + cur_month + app_localized_message("label", "month") + '</td>' ;
                 header += '<table cellspacing="0" cellpadding="0" height="100%"><tr>' + header_row1 + '</tr><tr>' + header_row2 + '</tr></table>' ;
     
-                // チャートカラム情報設定
+                // Chart Settings Column Information
                 var cm = this.grid_list.getColumnModel() ;
     
                 cm.setColumnHeader( 1, header ) ;

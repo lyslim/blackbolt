@@ -25,7 +25,7 @@ components.projects.task_report_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "この情報で報告を作成します。\nよろしいですか？"
+            created: "Create a report with this information. \ n Are you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';
@@ -43,39 +43,39 @@ components.projects.task_report_dialog = function(project_cd)
             $('#' + this.container + '_save').click($mo.scope(this, this.save));
             $('#' + this.container + '_close').click($mo.callback('close_' + this.container));
 
-            // 完了チェックボックスイベント設定
+            // Complete check box event set
             this.form_progress_kbn.addListener('check', this.onProgressKbnClick, this, true) ;
-            // 進捗率イベント設定
+            // Event setting percent complete
             this.form_progress_rate.addListener("blur", this.onProgressRateChange, this, true) ;
 
         },
         set_elements: function()
         {
-            // @TODO: ダイアログ内のフォームエレメントの初期化処理
+            // @TODO: Initialization of the form elements in the dialog
             var ef = Ext.form;
             var m1 = 'dlg_tsk_report_task' + '_';
 
             this.form_report_id             = new ef.Hidden(m1+'id');
 
-            // 報告日
+            // Report Date
             this.form_report_date           = new ef.DateField({ applyTo: m1+'report_date', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                                 allowBlank:false, blankText: '報告日は必須です。',
+                                                                 allowBlank:false, blankText: 'The report date is required.',
                                                                  msgTarget: 'title', format:"Y-m-d", value:(new Date()).format('Y-m-d')
                                                                });
-            // 進捗率
+            // Progress Rate
             this.form_progress_rate         = new ef.ComboBoxEx({ transform: m1+'progress_rate', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                   msgTarget: 'title', style: 'width:80px;', editable:false, triggerAction: "all"
                                                                });
-            // 完了
+            // Complete
             this.form_progress_kbn          = new ef.Checkbox({ applyTo: m1+'progress_kbn', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                 msgTarget: 'title'
                                                                });
 
-            // メモ
+            // Notes
             this.form_memo                  = new ef.TextArea({ applyTo: m1+'memo', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                 msgTarget: 'title'
                                                                });
-            // チェックイベント
+            // Check Events
             this.form_report_date.on( 'invalid', invalid_alert, this );
 
         },
@@ -99,7 +99,7 @@ components.projects.task_report_dialog = function(project_cd)
         },
         reset_form: function()
         {
-            // @TODO: フォームリセット処理
+            // @TODO: Reset Form Processing
             this.comp_id = null;
             this.form_report_id.reset();
             this.form_report_date.setRawValue((new Date()).format('Y-m-d'));
@@ -108,7 +108,7 @@ components.projects.task_report_dialog = function(project_cd)
             this.form_memo.reset();
         },
         validate: function() {
-            // @TODO: 入力チェック
+            // @TODO: Input check
             return ( this.form_report_date.validate()
                    ) ? true : false;
         },
@@ -118,7 +118,7 @@ components.projects.task_report_dialog = function(project_cd)
         },
         onBeforeHide: function()
         {
-            // @TODO: ダイアログを閉じる前の処理
+            // @TODO: Before you close the dialog process
             this.reset_form();
         },
 

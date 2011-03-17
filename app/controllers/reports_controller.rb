@@ -8,10 +8,10 @@ class ReportsController < ApplicationController
   end
 
   def create
-    session_user_id = @current_user.id
+    session_user_id = current_user.id
 
     #-----------------------------
-    # 登録済みオブジェクトを取得
+    # Get registered object
     #-----------------------------
     report_params = params[:dlg_tsk_report_task]
     comp_id = report_params[:id]

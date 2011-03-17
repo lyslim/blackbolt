@@ -25,7 +25,7 @@ components.projects.file_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "この情報でファイルを作成します。\nよろしいですか？"
+            created: "Create a file with this information. \ n Are you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';
@@ -45,19 +45,19 @@ components.projects.file_edit_dialog = function(project_cd)
         },
         set_elements: function()
         {
-            // @TODO: ダイアログ内のフォームエレメントの初期化処理
+            // @TODO: Initialization of the form elements in the dialog
             var ef = Ext.form;
 
             this.form_parent_node          = new ef.Hidden('dlg_fil_upload_parent_node');
             this.form_upload_file_name     = new ef.Hidden('dlg_fil_upload_upload_file_name');
 
-            //チェックイベント
+            // Check Events
             // this.form_dir_name.on( 'invalid', invalid_alert, this );
 
         },
         reset_form: function()
         {
-            // @TODO: フォームリセット処理
+            // @TODO: Reset Form Processing
             this.comp_id = null;
             this.form_parent_node.setRawValue('');
             this.form_upload_file_name.setRawValue('');
@@ -68,7 +68,7 @@ components.projects.file_edit_dialog = function(project_cd)
             this.form_parent_node.setRawValue(this.parent_node);
         },
         validate: function() {
-            // @TODO: 入力チェック
+            // @TODO: Input check
             // return this.form_dir_name.validate() ? true : false;
             return true;
         },
@@ -78,7 +78,7 @@ components.projects.file_edit_dialog = function(project_cd)
         },
         onBeforeHide: function()
         {
-            // @TODO: ダイアログを閉じる前の処理
+            // @TODO: Before you close the dialog process
             this.reset_form();
         },
 
@@ -92,7 +92,7 @@ components.projects.file_edit_dialog = function(project_cd)
             var confirm_message = this.messages.created;
 
             value = Ext.get('dlg_fil_upload_upload_file').dom.value;
-            // ファイル名取得
+            // Get the file name
             this.form_upload_file_name.setRawValue(value);
 
             if (!update_flg) {

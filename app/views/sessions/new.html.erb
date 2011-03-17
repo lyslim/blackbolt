@@ -1,4 +1,4 @@
-<h2>Sign in</h2>
+<h2>Welcome!</h2>
 
 <div id="login_form_wrapper">
 <% form_for resource_name, resource, :url => session_path(resource_name) do |f| -%>
@@ -7,14 +7,19 @@
   
   <p><%= f.label :password %></p>
   <p><%= f.password_field :password %></p>
-   
+
+  <p class="notice"><%= flash[:notice] %></p>
+  <p class="alert"><%= flash[:alert] %></p>
+ 
   <% if devise_mapping.rememberable? -%>
     <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
   <% end -%>
-
+  
   <p class='submit_area'><%= f.submit "Sign in" %></p>
 <% end -%>
 </div>
+
 <%= render :partial => "shared/devise_links" %>
+
 
 

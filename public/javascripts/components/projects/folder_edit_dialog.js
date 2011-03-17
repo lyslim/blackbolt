@@ -27,9 +27,9 @@ components.projects.folder_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "この情報でフォルダを作成します。\nよろしいですか？",
-            updated: "この情報でフォルダを更新します。\nよろしいですか？",
-            deleted: "このフォルダを削除します。\n本当によろしいですか？"
+            created: "Create a folder with this information. \ n Are you sure?",
+            updated: "Update the information in this folder. \ n Are you sure?",
+            deleted: "Delete this folder. \ n Are you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';
@@ -50,7 +50,7 @@ components.projects.folder_edit_dialog = function(project_cd)
         },
         set_elements: function()
         {
-            // @TODO: ダイアログ内のフォームエレメントの初期化処理
+            // @TODO: Initialization of the form elements in the dialog
             var ef = Ext.form;
 
             this.form_parent_node          = new ef.Hidden('dlg_dir_edit_parent_node');
@@ -61,13 +61,13 @@ components.projects.folder_edit_dialog = function(project_cd)
                                                                 msgTarget: 'title'
                                                               });
 
-            //チェックイベント
+            //Input check
             this.form_dir_name.on( 'invalid', invalid_alert, this );
 
         },
         reset_form: function()
         {
-            // @TODO: フォームリセット処理
+            // @TODO: Reset Form Processing
             this.comp_id = null;
             $('#' + this.container + '_destroy').css("display","none");
             this.form_parent_node.setRawValue('');
@@ -82,7 +82,7 @@ components.projects.folder_edit_dialog = function(project_cd)
             this.form_target_file.setRawValue(this.folder_id);
         },
         validate: function() {
-            // @TODO: 入力チェック
+            // @TODO: Input check
             return this.form_dir_name.validate() ? true : false;
         },
         onBeforeShow: function()
@@ -91,7 +91,7 @@ components.projects.folder_edit_dialog = function(project_cd)
         },
         onBeforeHide: function()
         {
-            // @TODO: ダイアログを閉じる前の処理
+            // @TODO: Before you close the dialog process
             this.reset_form();
         },
 
@@ -143,7 +143,7 @@ components.projects.folder_edit_dialog = function(project_cd)
          * Destroy
          */
         destroy: function() {
-            // @TODO: データ削除処理
+            // @TODO: Data removal process
             if (confirm(this.messages.deleted)) {
                 var url = this.data_url.replace('{:id}', this.fname);
                 var opt = {

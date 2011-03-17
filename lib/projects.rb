@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module Projects
 
   def prepared_project_info
@@ -16,7 +15,7 @@ module Projects
     code = params[:project_id] || params[:id]
     logger.debug code.inspect
     opt = {
-      :include => [:dat_projectusers => :mst_user]
+      :include => [:dat_projectusers => :user]
     }
     project = DatProject.find_by_project_cd(code, opt) if (!code.nil? and !code.blank?)
     project ||= nil
@@ -31,7 +30,7 @@ module Projects
     r
   end
 
-  # 現在ログイン中のユーザが指定されたプロジェクトに所属しているかをチェック
+  # check that the project belongs to a given user currently logged in
   def my_project?(project_id)
     if current_user and !project_id.blank?
       current_user_id = current_user.id
@@ -43,7 +42,7 @@ module Projects
     end
   end
 
-  # オブジェクトルート
+  # route objects
   def get_project_files_root(project_id)
     base_path = "#{RAILS_ROOT}#{$PROJECTFILES_ROOT}"
     if !File.exists?(base_path)

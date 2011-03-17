@@ -15,18 +15,16 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   # Authentiation
-  #include AuthenticatedSystem
   before_filter :authenticate_user!
 
   # Project
   include Projects
   before_filter :prepared_project_info
 
-  # フィルタ定義
+  # Localization
   include Messages
-  before_filter :loadMessage  # ローカライズ処理実施
+  before_filter :loadMessage 
 
-  # データ返す構造
+  # Return data structure
   include Result
-
 end

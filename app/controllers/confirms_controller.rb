@@ -28,7 +28,7 @@ class ConfirmsController < ApplicationController
         attr['content']       = h.content.gsub(/(\r\n|\r|\n)/, '') if h.content
         attr['report_date']   = format_date_year(h.report_date)
         attr['progress_rate'] = app_localized_message(:label, attr['msg_code'])
-        attr['report_user']   = h.update_user.user_name ||= h.update_user.email
+        attr['report_user']   = h.update_user.sap_name ||= h.update_user.email
         attr
       end
       task = comp.dat_task

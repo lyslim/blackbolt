@@ -169,7 +169,7 @@ module ProjectsHelper
       if projectcomp.mst_user_create.nil?
         return '&nbsp;'
       else
-        '(' + h(projectcomp.mst_user_create.user_name) + ')'
+        '(' + h(projectcomp.mst_user_create.sap_name) + ')'
       end
     else
       # 分類、その他
@@ -192,17 +192,17 @@ module ProjectsHelper
       task = projectcomp.dat_task
       return '&nbsp;' if task.dat_user_client.nil?
 
-      if task.dat_user_client.mst_user.nil?
+      if task.dat_user_client.user.nil?
         return '(' + h(task.dat_user_client.email) + ')'
       else
-        return '(' + h(task.dat_user_client.mst_user.user_name) + ')'
+        return '(' + h(task.dat_user_client.user.sap_name) + ')'
       end
     when 2,3
       # マイルストーン,イベント
       if projectcomp.mst_user_create.nil?
         return '&nbsp;'
       else
-        return '(' + h(projectcomp.mst_user_create.user_name) + ')'
+        return '(' + h(projectcomp.mst_user_create.sap_name) + ')'
       end
     else
       # 分類、その他
@@ -221,16 +221,16 @@ module ProjectsHelper
     ret = ""
     case projectcomp.task_kbn
     when 1
-      # タスク
+      # Tasks
       puser = projectcomp.dat_task.dat_user_main
       if puser.nil?
         ret = '&nbsp;'
       else
-        user = puser.mst_user
-        ret = h(user.nil? ? puser.email : user.user_name)
+        user = puser.user
+        ret = h(user.nil? ? puser.email : user.sap_name)
       end
     else
-      # 分類,マイルストーン,イベント、その他
+      # Categories, milestones, events, etc.
       ret = '&nbsp;'
     end
   end
@@ -284,7 +284,7 @@ module ProjectsHelper
     case projectcomp.task_kbn
     when 1
       # タスク
-      task = projectcomp.dat_task
+      task =   projectcomp.dat_task
       ret  = task.nil? ? '&nbsp;' : fmt_time(task.complete_date, :Y2MD)
     when 2
       # マイルストーン
@@ -464,7 +464,7 @@ module ProjectsHelper
   #表示用の名称を生成する。（ユーザー登録済みユーザーは「ユーザー名」、そうでないユーザーは「メールアドレス」）
   #
   def disp_projectuser_name( pu )
-    pu.mst_user.nil? ? pu.email : pu.mst_user.user_name
+    pu.user.nil? ? pu.email : pu.user.sap_name
   end
 
 
@@ -475,9 +475,9 @@ module ProjectsHelper
   #スカイプチャット用のアイコンを表示する。
   #
   def disp_projectuser_skype_icon(project_user)
-    if !project_user.mst_user.nil? and (!project_user.mst_user.skype_id.nil? and project_user.mst_user.skype_id != '')
-      tag = '<a href="skype:' + project_user.mst_user.skype_id + '?chat" onclick="return skypeCheck();">'
-      tag << image_tag('http://mystatus.skype.com/smallicon/' + project_user.mst_user.skype_id , :style=>"border: 0px;", :alt=>app_localized_message( :label, :skype_status))
+    if !project_user.user.nil? and (!project_user.user.skype_id.nil? and project_user.user.skype_id != '')
+      tag = '<a href="skype:' + project_user.user.skype_id + '?chat" onclick="return skypeCheck();">'
+      tag << image_tag('http://mystatus.skype.com/smallicon/' + project_user.user.skype_id , :style=>"border: 0px;", :alt=>app_localized_message( :label, :skype_status))
       tag << '</a>'
     else
       tag = '&nbsp;'
@@ -496,11 +496,11 @@ module ProjectsHelper
     unless project_id.nil?
       opt = {
         :conditions => ["project_id = ?", project_id],
-        :include    => :mst_user
+        :include    => :user
       }
       users = DatProjectuser.find(:all, opt)
       choises = users.map do |u|
-        [(u.mst_user.nil? ? u.email : u.mst_user.user_name), u.id]
+        [(u.user.nil? ? u.email : u.user.sap_name), u.id]
       end
       if options[:include_all]
         choises.insert(0, [app_localized_message(:label, :all_member) ,""])
@@ -524,11 +524,11 @@ module ProjectsHelper
     unless project_id.nil?
       opt = {
         :conditions => ["project_id = ?", project_id],
-        :include    => :mst_user
+        :include    => :user
       }
       users = DatProjectuser.find(:all, opt)
       choises = users.map do |u|
-        [(u.mst_user.nil? ? u.email : u.mst_user.user_name), u.id]
+        [(u.user.nil? ? u.email : u.user.sap_name), u.id]
       end
       if options[:include_all]
         choises.insert(0, [ app_localized_message(:label, :all_member) ,""])
@@ -552,11 +552,11 @@ module ProjectsHelper
     unless project_id.nil?
       opt = {
         :conditions => ["project_id = ?", project_id],
-        :include    => :mst_user
+        :include    => :user
       }
       users = DatProjectuser.find(:all, opt)
       choises = users.map do |u|
-        [(u.mst_user.nil? ? u.email : u.mst_user.user_name), u.id]
+        [(u.user.nil? ? u.email : u.user.sap_name), u.id]
       end
     else
       choises = choises
@@ -577,11 +577,11 @@ module ProjectsHelper
     unless project_id.nil?
       opt = {
         :conditions => ["project_id = ?", project_id],
-        :include    => :mst_user
+        :include    => :user
       }
       users = DatProjectuser.find(:all, opt)
       objects = users.map do |u|
-        {:user_name => h(u.mst_user.nil? ? u.email : u.mst_user.user_name), :projectuser_id => u.id}
+        {:user_name => h(u.user.nil? ? u.email : u.user.sap_name), :projectuser_id => u.id}
       end
     else
       choises = choises
@@ -600,7 +600,7 @@ module ProjectsHelper
     ret = ""
     project.dat_projectusers.each do |pu|
       ret += ', ' if ret != ""
-      ret += h(pu.mst_user.nil? ? pu.email : pu.mst_user.user_name)
+      ret += h(pu.user.nil? ? pu.email : pu.user.sap_name)
     end
     
     return ret

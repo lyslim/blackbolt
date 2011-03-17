@@ -198,34 +198,6 @@ ActiveRecord::Schema.define(:version => 20110314060712) do
     t.datetime "updated_on",                        :null => false
   end
 
-  create_table "mst_users", :force => true do |t|
-    t.string   "login_id"
-    t.string   "password",                                     :null => false
-    t.string   "user_name",                                    :null => false
-    t.string   "email",                                        :null => false
-    t.string   "name"
-    t.integer  "sex"
-    t.date     "birthday"
-    t.string   "company_name",   :limit => 60
-    t.string   "section_name",   :limit => 60
-    t.string   "zip",            :limit => 8
-    t.string   "prefecture",     :limit => 10
-    t.string   "address1",       :limit => 100
-    t.string   "address2",       :limit => 100
-    t.string   "tel",            :limit => 14
-    t.string   "fax",            :limit => 14
-    t.date     "start_date"
-    t.date     "expire_date"
-    t.integer  "valid_flg",                     :default => 1, :null => false
-    t.integer  "create_user_id"
-    t.datetime "created_on",                                   :null => false
-    t.integer  "update_user_id"
-    t.datetime "updated_on",                                   :null => false
-    t.string   "srcpassword"
-    t.string   "skype_id"
-    t.datetime "last_login_on"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
@@ -244,7 +216,7 @@ ActiveRecord::Schema.define(:version => 20110314060712) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sap_name",                                            :null => false
-    t.string   "user_id",                                             :null => false
+    t.string   "user_num"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "valid_flag",                          :default => 1,  :null => false
@@ -256,6 +228,6 @@ ActiveRecord::Schema.define(:version => 20110314060712) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["sap_name"], :name => "index_users_on_sap_name", :unique => true
-  add_index "users", ["user_id"], :name => "index_users_on_user_id", :unique => true
+  add_index "users", ["user_num"], :name => "index_users_on_user_num", :unique => true
 
 end

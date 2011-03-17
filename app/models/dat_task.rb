@@ -1,31 +1,31 @@
 class DatTask < ActiveRecord::Base
 
   #########################
-  # 関連定義
+  # Related Definitions
   #########################
-  # プロジェクト構成データに所有される(1:1)
+  # owned by the project configuration data(1:1)
   belongs_to :dat_projectcomp, :foreign_key => "project_tree_id"
-  # タスクユーザーデータを所有する(1:多)
+  # task users(1:n)
   has_many :dat_taskusers, :foreign_key => "task_id", :dependent=>:destroy
-  # タスク履歴データを所有する(1:多)
+  # task owns hostorical data(1:n)
   has_many :dat_taskhistories  , :foreign_key => "task_id", :dependent=>:destroy
 
-  # 依頼者　プロジェクトユーザーマスタに所有される(1:多)
+  # project requester(1:n)
   belongs_to :dat_user_client, :class_name=>"DatProjectuser", :foreign_key=>"client_user_id"
-  # 主担当者　プロジェクトマスタに所有される(1:多)
+  # task owner(1:n)
   belongs_to :dat_user_main, :class_name=>"DatProjectuser", :foreign_key=>"main_user_id"
 
   #########################
-  # フィルタ定義
+  # filter
   #########################
   before_create :create_taskcd
 
   ###########################################################
-  # メソッド：copyFromTemplate
-  # 概　　要：指定されたテンプレートデータ(TPタスクマスタ）から
-  #           属性値をコピーする
-  # 引　　数：template     TPタスクマスタ(mst_tptask)オブジェクト
-  # 戻 り 値：なし
+  # method: copyFromTemplate
+  # abstract: data for the specified template (TP task master) and
+  #  copy the attribute values
+  # argument: template TP task master (mst_tptask) Object
+  # returns: none
   ###########################################################
   def copyFromTemplate(template)
     self.attributes.each_pair do | key, value |

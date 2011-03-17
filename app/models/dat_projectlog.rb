@@ -1,9 +1,9 @@
 class DatProjectlog < ActiveRecord::Base
 
   #########################
-  # 関連定義
+  # Related definitions
   #########################
-  # プロジェクト構成データに所有される(1:1)
+  # Owned by the project configuration data(1:1)
   belongs_to :dat_projectcomp, :foreign_key => "projectcomp_id"
 
 end

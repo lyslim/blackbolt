@@ -2,8 +2,15 @@
 div.container { margin-top:160px; text-align:center; }
 
 div#login_form_wrapper {
-    width:310px; height: 160px; padding-top:54px;text-align:center; margin-left:auto; margin-right:auto; /* layout */
+    width:310px; height: 140px; padding-top:54px;text-align:center; margin-left:auto; margin-right:auto; /* layout */
     background-image:url('../i/bg_login_form.gif'); background-repeat:no-repeat; /* background */
+}
+
+.notice{
+	color:purple;
+}
+.alert{
+	color:red;
 }
 table#login_form_table { margin-left:auto; margin-right:auto; }
 table#login_form_table th, table#login_form_table td { padding: 2px 0px 2px 0px; }

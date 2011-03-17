@@ -26,9 +26,9 @@ components.projects.event_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "この情報でイベントを作成します。\nよろしいですか？",
-            updated: "この情報でイベントを更新します。\nよろしいですか？",
-            deleted: "このイベントを削除します。\n本当によろしいですか？"
+            created: "Create an event with this information. \ n Are you sure?",
+            updated: "Update the information in the event. \ n Are you sure?",
+            deleted: "Delete this event. \ n Are you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';
@@ -55,7 +55,7 @@ components.projects.event_edit_dialog = function(project_cd)
         },
         set_elements: function()
         {
-            // @TODO: ダイアログ内のフォームエレメントの初期化処理
+            // @TODO: Initialization of the form elements in the dialog
             var ef = Ext.form;
             var m1 = 'dlg_evt_edit_event' + '_';
             var m2 = 'dlg_evt_edit_comp' + '_';
@@ -64,59 +64,59 @@ components.projects.event_edit_dialog = function(project_cd)
             this.form_comp_id               = new ef.Hidden(m2+'id');
             this.form_task_kbn              = new ef.Hidden(m2+'task_kbn');
 
-            // イベント
+            // Event Name
             this.form_item_name             = new ef.TextField({ applyTo: m2+'item_name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                                 allowBlank:false, blankText: 'イベントは必須です。',
+                                                                 allowBlank:false, blankText: 'Event name is required.',
                                                                  msgTarget: 'title'
                                                                });
-            // 開始日時
+            // Start Date
             this.form_start_date            = new ef.DateField({ applyTo: m1+'start_date', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title', format:"Y-m-d"
                                                                });
-            // 開始時
+            // Start Hour
             this.form_start_time_4i         = new ef.NumberField({ applyTo: m1+'start_time_4i', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                    msgTarget: 'title', value: 0
                                                                });
-            // 開始分
+            // Start Minute
             this.form_start_time_5i         = new ef.NumberField({ applyTo: m1+'start_time_5i', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                    msgTarget: 'title', value: 0
                                                                });
-            // 完了時
+            // End Hour
             this.form_end_time_4i           = new ef.NumberField({ applyTo: m1+'end_time_4i', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                    msgTarget: 'title', value: 0
                                                                });
-            // 完了分
+            // End Minute
             this.form_end_time_5i           = new ef.NumberField({ applyTo: m1+'end_time_5i', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                    msgTarget: 'title', value: 0
                                                                });
-            // 場所
+            // place
             this.form_place                 = new ef.TextField({ applyTo: m1+'place', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
-            // メモ
+            // Notes
             this.form_content               = new ef.TextArea({ applyTo: m1+'content', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                 msgTarget: 'title'
                                                                });
-            // 分類
+            // Classification
             this.form_class_word1           = new ef.TextField({ applyTo: m2+'class_word1', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
-            // 分類
+            // Classification
             this.form_class_word2           = new ef.TextField({ applyTo: m2+'class_word2', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
-            // 分類
+            // Classification
             this.form_class_word3           = new ef.TextField({ applyTo: m2+'class_word3', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                                  msgTarget: 'title'
                                                                });
 
-            //チェックイベント
+            // Check Events
             this.form_item_name.on( 'invalid', invalid_alert, this );
 
         },
         reset_form: function()
         {
-            // @TODO: フォームリセット処理
+            // @TODO: Reset Form Processing
             this.comp_id = null;
             $('#' + this.container + '_destroy').css("display","none");
 
@@ -172,7 +172,7 @@ components.projects.event_edit_dialog = function(project_cd)
 
             var eventuser_regist_id = new Array() ;
 
-            // 設定済みのイベントユーザーのIDをキーに、ハッシュを生成
+            // User ID configured as a key event, generates a hash
             if( eventusers != null ){
                 for( var index=0 ; index<eventusers.length ; index++){
                     eventuser_regist_id[eventusers[index].projectuser_id] = true ;
@@ -210,18 +210,18 @@ components.projects.event_edit_dialog = function(project_cd)
         },
 
         validate: function() {
-            // @TODO: 入力チェック
+            // @TODO: Input check
             return this.form_item_name.validate() ? true : false;
         },
 
         onBeforeShow: function()
         {
-            // @TODO: ダイアログ表示の前処理
+            // @TODO: Preprocessing dialog display
             this.load_data();
         },
         onBeforeHide: function()
         {
-            // @TODO: ダイアログを閉じる前の処理
+            // @TODO: Before you close the dialog process
             this.reset_form();
         },
 
@@ -339,7 +339,7 @@ components.projects.event_edit_dialog = function(project_cd)
          * Destroy
          */
         destroy: function() {
-            // @TODO: データ削除処理
+            // @TODO: Data removal process
             if (confirm(this.messages.deleted)) {
                 var url = this.data_url.replace('{:id}', this.comp_id);
                 var opt = {

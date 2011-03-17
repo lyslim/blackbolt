@@ -1,24 +1,23 @@
-# -*- coding: utf-8 -*-
 class DatProjectcomp < ActiveRecord::Base
 
   #########################
-  # 関連定義
+  # Related definitions
   #########################
-  # プロジェクトデータに所有される(1:多)
+  # Owned by project data(1:n)
   belongs_to :dat_project, :foreign_key => "project_id"
-  # マイルストーンデータを所有する(1:1)
+  # milestone(1:1)
   has_one :dat_milestone, :foreign_key => "project_tree_id", :dependent=>:destroy
-  # タスクデータを所有する(1:1)
+  # task(1:1)
   has_one :dat_task, :foreign_key => "project_tree_id", :dependent=>:destroy
-  # イベントデータを所有する(1:1)
+  # event(1:1)
   has_one :dat_event, :foreign_key => "project_tree_id", :dependent=>:destroy
-  # プロジェクトログデータを所有する(1:多)
+  # project logs(1:n)
   has_many :dat_projectlogs, :foreign_key => "projectcomp_id"
 
-  # ユーザーマスタに所有される(1:多)
-  belongs_to :mst_user_create, :class_name=>"MstUser", :foreign_key=>"create_user_id"
-  # ユーザーマスタに所有される(1:多)
-  belongs_to :mst_user_update, :class_name=>"MstUser", :foreign_key=>"update_user_id"
+  # owned by the create user(1:n)
+  belongs_to :mst_user_create, :class_name=>"User", :foreign_key=>"create_user_id"
+  # owned by the update user(1:n)
+  belongs_to :mst_user_update, :class_name=>"User", :foreign_key=>"update_user_id"
 
   TASK_KBN = {
     1 => :task,
@@ -56,11 +55,10 @@ class DatProjectcomp < ActiveRecord::Base
   end
 
   ###########################################################
-  # メソッド：copyFromTemplate
-  # 概　　要：指定されたテンプレートデータ(テンプレート構成マスタ）から
-  #           属性値をコピーする
-  # 引　　数：template     テンプレート構成マスタ(mst_composition)オブジェクト
-  # 戻 り 値：なし
+  # method：copyFromTemplate
+  # abstract：data for the specified template (master template configuration) to copy the attribute values
+  # argument：template master template configuration (mst_composition) Object
+  # returns: none
   ###########################################################
   def copyFromTemplate(template)
     self.attributes.each_pair do | key, value |

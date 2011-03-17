@@ -64,9 +64,9 @@ module TasksHelper
       # タスクIDが指定されていない場合は、空の配列を返す
       users = DatTaskuser.find(:all,
                                   :conditions=>["task_id = ?", task_id],
-                                  :include=>[{:dat_projectuser=>:mst_user}])
+                                  :include=>[{:dat_projectuser=>:user}])
       choises = users.map{
-                            |u| [(u.dat_projectuser.mst_user.nil? ? u.dat_projectuser.email : u.dat_projectuser.mst_user.user_name), u.projectuser_id]
+                            |u| [(u.dat_projectuser.user.nil? ? u.dat_projectuser.email : u.dat_projectuser.user.sap_name), u.projectuser_id]
                           }
     end
 
@@ -91,9 +91,9 @@ module TasksHelper
       # タスクIDが指定されていない場合は、空の配列を返す
       users = DatTaskuser.find(:all,
                                   :conditions=>["task_id = ?", task_id],
-                                  :include=>[{:dat_projectuser=>:mst_user}])
+                                  :include=>[{:dat_projectuser=>:user}])
       objects = users.map{
-                            |u| {:user_name=>(u.dat_projectuser.nil? ? '' : (u.dat_projectuser.mst_user.nil? ? u.dat_projectuser.email : u.dat_projectuser.mst_user.user_name) ), :projectuser_id=>u.projectuser_id}
+                            |u| {:user_name=>(u.dat_projectuser.nil? ? '' : (u.dat_projectuser.user.nil? ? u.dat_projectuser.email : u.dat_projectuser.user.sap_name) ), :projectuser_id=>u.projectuser_id}
                           }
     end
 

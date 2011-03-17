@@ -14,7 +14,5 @@ class EnvController < ApplicationController
 
       render(:text => js)
     end
-
   end
-
 end

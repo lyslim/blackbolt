@@ -5,6 +5,6 @@ class DatTaskhistory < ActiveRecord::Base
   #########################
   # タスクデータに所有される(1:多)
   belongs_to :dat_task
-  belongs_to :update_user, :class_name => 'MstUser', :foreign_key => 'update_user_id'
+  belongs_to :update_user, :class_name => 'User', :foreign_key => 'update_user_id'
 
 end

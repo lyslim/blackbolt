@@ -115,7 +115,7 @@ Ext.form.ComboBoxEx = Ext.extend(Ext.form.ComboBox, {
 
 Ext.form.HtmlEditorEx = Ext.extend(Ext.form.HtmlEditor, {
     createLink : function(){
-        // IEの場合、プロンプトウィンドウを表示すると選択状態が消えるため、ここで選択状態を保存
+        // IE, select the state to disappear when you view the Prompt to save state selection here
         if (Ext.isIE) {
             this.win.focus();
             this.__selrange = this.doc.selection.createRange();
@@ -123,15 +123,15 @@ Ext.form.HtmlEditorEx = Ext.extend(Ext.form.HtmlEditor, {
         
         Ext.MessageBox.show( {
             animEl : this.iframe,
-            title: 'リンク生成',
-            msg: 'リンク先のURLを入力してください。',
+            title: 'Link generation',
+            msg: 'Please enter the URL of the destination.',
             prompt: true,
             value: this.defaultLinkValue,
             buttons: Ext.MessageBox.OKCANCEL,
             fn: function(btn, url){
                 if (Ext.isIE) {
                     if( this.__selrange != null){
-                        // IEの場合、プロンプトウィンドウを表示すると選択状態が消えるため、ここで選択状態を再設定
+                        // IE, choose to disappear when you view the Prompt condition, reset the selected state where
                         this.win.focus();
                         this.__selrange.select() ;
                     }

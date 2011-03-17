@@ -1,12 +1,11 @@
 module Result
-
   #
-  #指定されたパラメータの内容でJSONデータを生成して返す
-  #_success_ :: 処理結果(true:成功、false:失敗)をBoolean型で指定します
-  #_message_ :: messageデータに渡すメッセージを指定します
-  #_result_ :: resultというキーで生成されるデータが表示されます，結果情報ハッシュデータを指定します
+  # The contents of the specified parameters to generate a return JSON data
+  # _success_:: processing result (true: Successful, false: failure) specified in the Boolean type
+  # _message_:: specifies the message to pass data
+  # _result_::  appears that the key data generated to specify the hash result information data
   #
-  #戻り値:: JSONデータ
+  # Returns:: JSON Data
   #
   def result_for_json(success, message, result)
     ret = {

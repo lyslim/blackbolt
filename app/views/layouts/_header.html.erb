@@ -7,8 +7,8 @@
     <div id="system_menu">
       <ul>
         <li id="current_user"><%=h @current_user.email %></li>
-        <li><%= link_to('アカウント', account_path) %></li>
-        <li><%= link_to('ログアウト', session_path, {:method => :delete}) %></li>
+        <li><%= link_to('Account', edit_user_registration_path) %></li>
+        <li><%= link_to('Log Out', destroy_user_session_path) %></li>
       </ul>
     </div>
   </div>
@@ -32,7 +32,7 @@
       &nbsp;&nbsp;<%= date_range(@current_project.start_date, @current_project.delivery_date) %>
       <span class="project_users">
 <% @current_project.dat_projectusers.each_with_index do |pu, i| -%>
-<% if i > 0 %>,&nbsp;<% end -%><% if pu.mst_user %><%= pu.mst_user.user_name %><% else -%><%= pu.email %><% end -%>
+<% if i > 0 %>,&nbsp;<% end -%><% if pu.user %><%= pu.user.sap_name %><% else -%><%= pu.email %><% end -%>
 <% end -%>
       </span>
       <%= hidden_field :current_project, :project_cd %>
@@ -42,7 +42,7 @@
       <%= link_to(app_localized_message(:label, :edit), edit_project_path(@current_project.project_cd)) %>
     </span>
 <% else -%>
-    <span style="float:left;">プロジェクト一覧</span>
+    <span style="float:left;">Project List</span>
 <% end -%>
   </div>
 

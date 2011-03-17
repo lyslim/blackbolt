@@ -33,6 +33,9 @@ ActionController::Base.relative_url_root = ""
 
   # Dashboard
   map.resource :dashboard
+  
+  map.root :controller => "dashboards", :action => 'show'
+  
   #map.resource :account
 
   # authentication
@@ -72,7 +75,7 @@ ActionController::Base.relative_url_root = ""
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "dashboards", :action => 'show'
+
 
   # See how all your routes lay out with "rake routes"
 

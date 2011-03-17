@@ -4,7 +4,7 @@ en:
       link: 'Sign in'
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
-      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unauthenticated: 'Please sign in.'
       unconfirmed: 'You have to confirm your account before continuing.'
       locked: 'Your account is locked.'
       invalid: 'Invalid email or password.'
@@ -29,7 +29,7 @@ en:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
       unlocked: 'Your account was successfully unlocked. You are now signed in.'
     mailer:
-      confirmation_instructions: 'Confirmation instructions'
+      confirmation_instructions: '[BLACKBOLT] Registration Confirmation'
       reset_password_instructions: 'Reset password instructions'
       unlock_instructions: 'Unlock Instructions'
 

@@ -20,56 +20,56 @@ App.ProjectsEdit.prototype = {
 
     set_events : function()
     {
-		// 保存ボタンクリックイベント設定
+		// Save Settings button click
         $('#btn_add_project').click($mo.scope(this, this.save));
-		// 変更ボタンクリックイベント設定
+		// Change Settings button click
         $('#btn_edit_project').click($mo.scope(this, this.save));
     },
 
     set_elements: function()
     {
-        // @TODO: ダイアログ内のフォームエレメントの初期化処理
+        // @TODO: Initialization of the form elements in the dialog
         var ef = Ext.form;
         var m1 = 'project'  + '_';
         var m2 = 'template' + '_';
 
-        // プロジェクト名
+        // Project Name
         this.form_project_name        = new ef.TextField({ applyTo: m1+'project_name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                           allowBlank:false, blankText: 'プロジェクト名は必須です。',
+                                                           allowBlank:false, blankText: 'The Project Name is required.',
                                                            msgTarget: 'title'
                                                          });
-        // プロジェクトコード
+        // Project Code
         this.form_project_cd          = new ef.TextField({ applyTo: m1+'project_cd', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                           allowBlank:false, blankText: 'プロジェクトコードは必須です。',
+                                                           allowBlank:false, blankText: 'Delivery Order ID is required.',
                                                            msgTarget: 'title'
                                                          });
-        // エンドユーザー名
+        // End User Name
         this.form_end_user_name       = new ef.TextField({ applyTo: m1+'end_user_name', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                           allowBlank:false, blankText: 'エンドユーザー名は必須です。',
+                                                           allowBlank:false, blankText: 'Customer Name is required.',
                                                            msgTarget: 'title'
                                                          });
-        // 開始日
+        // Start Date
         this.form_start_date          = new ef.DateField({ applyTo: m1+'start_date', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                           allowBlank:false, blankText: '開始日は必須です。', invalidText: '開始日が不正です',
+                                                           allowBlank:false, blankText: 'Start date is required.', invalidText: 'Invalid start date',
                                                            msgTarget: 'title', format: "Y-m-d"
                                                          });
-        // 終了日
+        // End Date
         this.form_delivery_date       = new ef.DateField({ applyTo: m1+'delivery_date', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                                           allowBlank:false, blankText: '終了日は必須です。', invalidText: '終了日が不正です',
+                                                           allowBlank:false, blankText: 'End date is required。', invalidText: 'Invalid end date',
                                                            msgTarget: 'title', format: "Y-m-d"
                                                          });
-        // テンプレート
+        // Templates
         this.form_template_id         = new ef.ComboBoxEx({ transform: m2+'id', selectOnFocus:true, validateOnBlur:false, validationEvent:false,
                                                             msgTarget: 'title', style: 'width: 212px;', editable:false, triggerAction: "all"
                                                           });
-        // 参加メンバー
+        // Participating members
         var elms = Ext.query( 'input.members_field' ) ;
         for( var i=0 ; i<elms.length ; i++ ){
             var e = elms[i] ;
             this.set_member_event(e.id);
         }
 
-        //チェックイベント
+        // Check Events
         set_invalid_event(this.form_project_name);
         set_invalid_event(this.form_project_cd);
         set_invalid_event(this.form_end_user_name);
@@ -79,9 +79,9 @@ App.ProjectsEdit.prototype = {
 
     set_member_event: function(id){
         var ef = Ext.form;
-        // 参加メンバー
+        // Participating members
         var email = new ef.TextField({ applyTo: id, selectOnFocus:true, validateOnBlur:false, validationEvent:false,
-                                       vtype: 'email', vtypeText: '参加メンバーの形式は不正です。',
+                                       vtype: 'email', vtypeText: 'Participant email is invalid.',
                                        msgTarget: 'title'
                                      });
         this.members.push(email);
@@ -90,7 +90,7 @@ App.ProjectsEdit.prototype = {
     },
 
     validate: function() {
-        // @TODO: 入力チェック
+        // @TODO: Input check
         var rtn = ( this.form_project_name.validate() &&
                     this.form_project_cd.validate() &&
                     this.form_end_user_name.validate() &&
@@ -107,8 +107,8 @@ App.ProjectsEdit.prototype = {
 
     // messaage
     messages: {
-        created: "この情報でプロジェクトを作成します。\nよろしいですか？",
-        updated: "この情報でプロジェクトを更新します。\nよろしいですか？"
+        created: "Create a project with this information. \n Are you sure?",
+        updated: "Update the information in this project. \n Are you sure?"
     },
 
     save : function(o){
@@ -123,14 +123,14 @@ App.ProjectsEdit.prototype = {
                 break;
         }
 
-        // 期間前後チェック
+        // Check before and after the period
         var between_valid = fncBackToForth(this.form_start_date.getRawValue(), this.form_delivery_date.getRawValue());
         if (!between_valid) {
-            alert('期間が正しくありません。');
+            alert('Time period is incorrect');
             return false;
         }
 
-        // 入力チェック
+        // Input check
         if (!this.validate() || !confirm(confirm_message)) return false;
 
 		form = document.edit_project_form;
@@ -143,9 +143,9 @@ App.ProjectsEdit.prototype = {
         var field = '<div id="email_pro_inp_'+ cnt +'">' +
                     '<input id="users_' + cnt + '" maxlength="256" name="users[]" size="256" style="width:212px;ime-mode:disabled;margin-bottom:2px;" class ="members_field" type="text" />' +
                     '&nbsp;' +
-                    '<a href="#" onclick="$page.onEmailFieldRemove(\'email_pro_inp_' + cnt + '\'); return false;"><span >削除</span>&nbsp;</a>' +
+                    '<a href="#" onclick="$page.onEmailFieldRemove(\'email_pro_inp_' + cnt + '\'); return false;"><span >Delete</span>&nbsp;</a>' +
                     '</div>' ;
-        // アドレス追加用テキストフィールドの追加
+        // Adding additional text fields for address
         var obj = Ext.get(area_id);
         obj.insertHtml('beforeEnd', field);
 
@@ -154,12 +154,12 @@ App.ProjectsEdit.prototype = {
     },
 
     onEmailFieldRemove : function(span_id){
-        //アドレス追加テキストフィールドの削除
+        // Delete the text field to add the address
         var elm = Ext.get(span_id) ;
         elm.remove();
         this.members_cnt -= 1;
 
-        // 参加メンバー
+        // Participating members
         this.members = [];
         var elms = Ext.query( 'input.members_field' ) ;
         for( var i=0 ; i<elms.length ; i++ ){

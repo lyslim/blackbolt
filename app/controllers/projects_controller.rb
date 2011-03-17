@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   def index
     opt = {
-     :include    => [{:dat_projectusers=>:mst_user}],
+     :include    => [{:dat_projectusers=>:user}],
      :conditions => ["dat_projects.valid_flg = 1 AND dat_projects.id in (SELECT pu.project_id FROM dat_projectusers pu WHERE pu.user_id = ? ) ", @current_user.id],
      :order      => "dat_projects.start_date desc, delivery_date desc"
     }
@@ -93,15 +93,15 @@ class ProjectsController < ApplicationController
     # プロジェクトオブジェクト生成
     # フォームパラメータから新規プロジェクトオブジェクトを生成
     project = DatProject.new(params[:project])
-    project.create_user_id = @current_user.id
-    project.update_user_id = @current_user.id
+    project.create_user_id = current_user.id
+    project.update_user_id = current_user.id
 
     #-----------------------------
     # 参加ユーザー生成
     #-----------------------------
     # 登録者自身もプロジェクトユーザーとして生成
-    if ! @current_user.id.nil?
-      user = MstUser.find(@current_user.id)
+    if ! current_user.id.nil?
+      user = User.find(current_user.id)
       projectuser = project.dat_projectusers.build()
       projectuser.email = user.email
       projectuser.user_id = user.id
@@ -110,17 +110,17 @@ class ProjectsController < ApplicationController
     # 参加ユーザー指定時、プロジェクトユーザーオブジェクトを生成
     for user in params[:users]
       next if user.empty?
-      next if user == @current_user.email
+      next if user == current_user.email
       # buildにて生成し、ここでは保存しない
       projectuser = project.dat_projectusers.build(:email=>user)
       projectuser.create_user_id = project.create_user_id
-      if mstusr = MstUser.find_by_email(user)
+      if usr = User.find_by_email(user)
         # 既にユーザーマスタに登録済みのメールアドレスの場合、ユーザーIDを更新
-        projectuser.user_id = mstusr.id
+        projectuser.user_id = usr.id
 
         # プロジェクト召集メールを送信する
-        if ! mstusr.email.nil? && ! mstusr.email.empty?
-          AppMailer.deliver_mail_invite_project( mstusr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>new_session_path} )
+        if ! usr.email.nil? && ! usr.email.empty?
+          AppMailer.deliver_mail_invite_project( usr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>new_session_path} )
         end
       else
         # 招待メールを送信する
@@ -180,7 +180,7 @@ class ProjectsController < ApplicationController
                                 :conditions=>[" dat_projects.id=? ", id],
                                 :include=>:dat_projectusers)
 
-      project.update_user_id = @current_user.id
+      project.update_user_id = current_user.id
 
       #-----------------------------
       # 参加ユーザー生成
@@ -194,23 +194,23 @@ class ProjectsController < ApplicationController
       for user in params[:users]
         next if user.empty?
         next if ! projectusers.delete(user).nil?
-        next if user == @current_user.email
+        next if user == current_user.email
 
         # buildにて生成し、ここでは保存しない
         projectuser = project.dat_projectusers.build(:email=>user)
         projectuser.create_user_id = project.update_user_id
-        if mstusr = MstUser.find_by_email(user)
+        if mstusr = User.find_by_email(user)
           # 既にユーザーマスタに登録済みのメールアドレスの場合、ユーザーIDを更新
           projectuser.user_id = mstusr.id
 
           # プロジェクト召集メールを送信する
           if ! mstusr.email.nil? && ! mstusr.email.empty?
-            AppMailer.deliver_mail_invite_project( mstusr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>new_session_path} )
+            AppMailer.deliver_mail_invite_project( mstusr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>new_user_session_path} )
           end
         else
           # 招待メールを送信する
           if ! projectuser.email.nil? && ! projectuser.email.empty?
-            AppMailer.deliver_mail_invite( projectuser, {:subject=>app_localized_message( :label, :invite_mail_subject ), :url_signup=>new_session_path} )
+            AppMailer.deliver_mail_invite( projectuser, {:subject=>app_localized_message( :label, :invite_mail_subject ), :url_signup=>new_user_session_path} )
           end
         end
       end
@@ -304,7 +304,7 @@ class ProjectsController < ApplicationController
     # タスクのリストを取得
     # ※担当者、構成データも同時に取得
     #-----------------------------
-    conditions = "dat_projects.valid_flg = 1 AND dat_projectusers.user_id = #{@current_user.id}"
+    conditions = "dat_projects.valid_flg = 1 AND dat_projectusers.user_id = #{current_user.id}"
     if ! @project.id.nil?
       conditions += " AND dat_projectcomps.project_id = #{@project.id}"
     end
@@ -318,7 +318,7 @@ class ProjectsController < ApplicationController
   end
 
   def get_events
-    conditions = "dat_projectusers.user_id = #{@current_user.id}"
+    conditions = "dat_projectusers.user_id = #{current_user.id}"
     if ! @project.id.nil?
       conditions += " AND dat_projectcomps.project_id = #{@project.id}"
     else
@@ -356,7 +356,7 @@ class ProjectsController < ApplicationController
 
     opt = {
       :conditions => conditions,
-      :include    => [:dat_project, :mst_user ], 
+      :include    => [:dat_project, :user ], 
       :order      => "dat_projectusers.id "
     }
     DatProjectuser.find(:all, opt)
@@ -468,7 +468,7 @@ class ProjectsController < ApplicationController
       # 指定されたプロジェクトデータを取得
       # （トップレベルのプロジェクト構成およびタスク、イベント、分類、マイルストーンデータも同時に取得）
       #-----------------------------
-      include = [ {:dat_projectcomps=>[:dat_milestone, {:dat_task=>[{:dat_user_main=>:mst_user}, {:dat_user_client=>:mst_user}]}, :dat_event, :mst_user_create]} ]
+      include = [ {:dat_projectcomps=>[:dat_milestone, {:dat_task=>[{:dat_user_main=>:user}, {:dat_user_client=>:user}]}, :dat_event, :mst_user_create]} ]
       project = DatProject.find( :first,
                                  :conditions => [" dat_projects.id=? ", id],
                                  :include    => include,
@@ -490,7 +490,7 @@ class ProjectsController < ApplicationController
       # 指定されたプロジェクトデータを取得
       # （トップレベルのプロジェクト構成およびタスク、イベント、分類、マイルストーンデータも同時に取得）
       #-----------------------------
-      include = [ {:dat_projectcomps=>[:dat_milestone, {:dat_task=>[{:dat_user_main=>:mst_user}, {:dat_user_client=>:mst_user}]}, :dat_event, :mst_user_create]} ]
+      include = [ {:dat_projectcomps=>[:dat_milestone, {:dat_task=>[{:dat_user_main=>:user}, {:dat_user_client=>:user}]}, :dat_event, :mst_user_create]} ]
       project = DatProject.find( :first,
                                  :conditions => [" dat_projects.id=? ", id],
                                  :include    => include,
