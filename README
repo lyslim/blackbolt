@@ -1,7 +1,7 @@
 
 blackbolt - task dispatcher / resource organizer for Stupid Application Provider :)
 
-Envionment:
+Environment:
 
 ruby 1.8.7 + rails 2.3.10 + mysql 5.1.51
 
