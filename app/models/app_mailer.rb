@@ -7,7 +7,6 @@ class AppMailer < Iso2022jpMailer
 
   helper ApplicationHelper
 
-
   #
   #=== サインアップ完了メールを送信する
   #

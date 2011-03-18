@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   # Authentiation
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
 
   # Project
   include Projects

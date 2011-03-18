@@ -107,8 +107,8 @@ App.ProjectsEdit.prototype = {
 
     // messaage
     messages: {
-        created: "Create a project with this information. \n Are you sure?",
-        updated: "Update the information in this project. \n Are you sure?"
+        created: "Are you sure to create a new Project?",
+        updated: "Are you sure to update this Project?"
     },
 
     save : function(o){

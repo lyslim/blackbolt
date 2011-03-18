@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class ProjectsController < ApplicationController
+  
+  before_filter :authenticate_user!
 
   # ヘルパ定義
   include ProjectsHelper
