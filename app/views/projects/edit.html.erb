@@ -76,7 +76,7 @@
             <tr>
               <td valign="top"><%= page_label(:label, :part_members) %></td>
               <td id="email_area_pro_inp">
-                <div id="email_pro_inp_0">自分<%= hidden_field_tag "users[]", @current_user.email, :style => "width:100%;ime-mode:disabled;margin-bottom:2px;", :maxlength => "256", :id => ('users_0') %>&nbsp;</div>
+                <div id="email_pro_inp_0">Myself<%= hidden_field_tag "users[]", @current_user.email, :style => "width:100%;ime-mode:disabled;margin-bottom:2px;", :maxlength => "256", :id => ('users_0') %>&nbsp;</div>
                 <%- 
                 cnt = 0
                 @project.dat_projectusers.each_index do | index |

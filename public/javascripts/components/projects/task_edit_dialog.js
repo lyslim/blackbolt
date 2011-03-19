@@ -26,9 +26,9 @@ components.projects.task_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "Create a task with this information. \ n Are you sure?",
-            updated: "Update the tasks in this information. \ n Are you sure?",
-            deleted: "Delete this task. \ n Are you sure?"
+            created: "Create a task with this information. \nAre you sure?",
+            updated: "Update the tasks in this information. \nAre you sure?",
+            deleted: "Delete this task. \nAre you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';

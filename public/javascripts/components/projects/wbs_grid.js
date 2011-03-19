@@ -30,7 +30,7 @@ components.projects.wbs_grid = function(p_cd)
         order_url      : url_for('projects/' + p_cd + '/items/{:id}/item_order_update.json'),
 
         messages: {
-            deleted: "Delete this section. \ n Are you sure?"
+            deleted: "Delete this section. \nAre you sure?"
         },
 
         grid_list      : null, // Grid Element

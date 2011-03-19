@@ -108,7 +108,7 @@ App.AccountEdit.prototype = {
 
     // messaage
     messages: {
-        updated: "Update your account information. \ n Do you want?"
+        updated: "Are you sure to update your account?"
     },
 
     save : function(o){

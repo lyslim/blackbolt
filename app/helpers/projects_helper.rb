@@ -1,59 +1,24 @@
-# -*- coding: utf-8 -*-
 module ProjectsHelper
 
   include ERB::Util
 
-  #
-  #=== プロジェクト名のリンクタグを返す
-  #
-  #指定されたプロジェクトオブジェクトから
-  #該当のプロジェクト名のリンクタグを返す
-  #
   def link_project_name(project, options="")
     to = {:controller=>:project, :action=>:index, :id=>project.id}
     link_to(disp_project_name(project)+options.to_s, to)
   end
 
-
-  #
-  #=== プロジェクト名称文字列を返す
-  #
-  #指定されたプロジェクトオブジェクトから
-  #該当のプロジェクト名を返す
-  #
   def disp_project_name(project)
     project.project_name.empty? ? '&nbsp;' : h(project.project_name)
   end
 
-
-  #
-  #=== エンドユーザー名称文字列を返す
-  #
-  #指定されたプロジェクトオブジェクトから
-  #該当のエンドユーザー名を返す
-  #
   def disp_end_user_name(project)
     project.end_user_name.empty? ? '&nbsp;' : h(project.end_user_name)
   end
 
-
-  #
-  #=== プロジェクト名称文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #該当のプロジェクト名を返す
-  #
   def disp_project_name_by_comp(projectcomp)
     ret = projectcomp.dat_project.nil? ? '&nbsp;' : projectcomp.dat_project.project_name
   end
 
-
-  #
-  #=== タスクID文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #該当の関連情報を取り出し、そのタスクIDを返す
-  #
   def disp_task_id(projectcomp)
     ret = ""
 
@@ -62,18 +27,10 @@ module ProjectsHelper
       task = projectcomp.dat_task
       ret = task.task_cd.nil? ? '&nbsp;' : '(' + task.task_cd + ')'
     else
-      # 分類、その他
       ret = '&nbsp;'
     end
   end
 
-
-  #
-  #=== 名称文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #該当の関連情報を取り出し、その名称を返す
-  #
   def disp_detail_name(projectcomp)
     ret = ""
     ret = projectcomp.item_name.nil? ? '&nbsp;' : h(projectcomp.item_name)
@@ -115,13 +72,6 @@ module ProjectsHelper
     return ret
   end
 
-
-  #
-  #=== アイコン画像タグを返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #区分によりアイコンタグを出力する
-  #
   def disp_kbn_icon(projectcomp)
     ret = ""
     ret = case projectcomp.task_kbn
@@ -132,13 +82,6 @@ module ProjectsHelper
     end
   end
 
-
-  #
-  #=== アイコン画像タグを返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #完了区分を表すアイコンタグを返す
-  #
   def disp_progress_icon(projectcomp)
     ret = ""
     case projectcomp.task_kbn
@@ -149,46 +92,29 @@ module ProjectsHelper
       else
         ret = '&nbsp;'
       end
-    else# 分類、その他
+    else
       ret = '&nbsp;'
     end
   end
 
-
-  #
-  #=== 登録者名文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #登録者名を取り出す。分類区分の場合は空白を返す。
-  #
   def disp_create_user_name(projectcomp)
     ret = ""
     case projectcomp.task_kbn
     when 1,2,3
-      # タスク,マイルストーン,イベント
       if projectcomp.mst_user_create.nil?
         return '&nbsp;'
       else
         '(' + h(projectcomp.mst_user_create.sap_name) + ')'
       end
     else
-      # 分類、その他
       ret = '&nbsp;'
     end
   end
 
-
-  #
-  #=== 依頼者名文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #依頼者名を取り出す。
-  #
   def disp_client_user_name(projectcomp)
     ret = ""
     case projectcomp.task_kbn
     when 1
-      # タスク
       task = projectcomp.dat_task
       return '&nbsp;' if task.dat_user_client.nil?
 
@@ -198,25 +124,16 @@ module ProjectsHelper
         return '(' + h(task.dat_user_client.user.sap_name) + ')'
       end
     when 2,3
-      # マイルストーン,イベント
       if projectcomp.mst_user_create.nil?
         return '&nbsp;'
       else
         return '(' + h(projectcomp.mst_user_create.sap_name) + ')'
       end
     else
-      # 分類、その他
       return '&nbsp;'
     end
   end
 
-
-  #
-  #=== 担当者名文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #担当者名を取り出す。担当者が存在しない場合は空白を返す。
-  #
   def disp_charge_user_name(projectcomp)
     ret = ""
     case projectcomp.task_kbn
@@ -235,18 +152,10 @@ module ProjectsHelper
     end
   end
 
-
-  #
-  #=== 優先度を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #優先度を取り出す。（タスクのみ）
-  #
   def disp_priority(projectcomp)
     ret = ""
     case projectcomp.task_kbn
     when 1
-      # タスク
       task = projectcomp.dat_task
       case task.priority_kbn
       when 1
@@ -267,79 +176,49 @@ module ProjectsHelper
         ret = '&nbsp;'
       end
     else
-      # 分類,マイルストーン,イベント、その他
       ret = '&nbsp;'
     end
   end
 
-
-  #
-  #=== 納期文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #納期を取り出す。
-  #
   def disp_delivery_date(projectcomp)
     ret = ""
     case projectcomp.task_kbn
     when 1
-      # タスク
       task =   projectcomp.dat_task
       ret  = task.nil? ? '&nbsp;' : fmt_time(task.complete_date, :Y2MD)
     when 2
-      # マイルストーン
       milestone = projectcomp.dat_milestone
       ret  = milestone.nil? ? '&nbsp;' : fmt_time(milestone.mils_date, :Y2MD)
     when 3
-      # イベント
       event = projectcomp.dat_event
       ret   = event.nil? ? '&nbsp;' : fmt_time(event.end_date, :Y2MD)
     else
-      # 分類、その他
       ret = '&nbsp;'
     end
   end
 
-
-  #
-  #=== 完了予定日文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #完了予定日を取り出す。
-  #
   def disp_comp_exp_date(projectcomp)
     ret = ""
     case projectcomp.task_kbn
     when 1
-      # タスク
       task = projectcomp.dat_task
       ret  = task.nil? ? '&nbsp;' : fmt_time(task.complete_date, :Y2MD)
     when 2
-      # マイルストーン
       milestone = projectcomp.dat_milestone
       ret  = milestone.nil? ? '&nbsp;' : fmt_time(milestone.mils_date, :Y2MD)
     when 3
-      # イベント
       event = projectcomp.dat_event
       ret = event.nil? ? '&nbsp;' : fmt_time(event.end_date, :Y2MD)
     else
-      # 分類、その他
       ret = '&nbsp;'
     end
   end
 
 
-  #
-  #=== 状況文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #状況を取り出す。（タスクのみ）
-  #
   def disp_situation(projectcomp)
     ret = ""
     case projectcomp.task_kbn
     when 1
-      # タスク
       task = projectcomp.dat_task
       ret = case task.progress_kbn
         when 0 then ret = '&nbsp;'
@@ -350,64 +229,41 @@ module ProjectsHelper
         else '&nbsp;'
       end
     else
-      # 分類,マイルストーン,イベント、その他
       ret = '&nbsp;'
     end
   end
 
-
-  #
-  #=== 色値文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #表示色を判断し、その色値文字列を返す。
-  #
   def disp_task_color(projectcomp)
     ret = ""
     case projectcomp.task_kbn
     when 1
-      # タスク
       task = projectcomp.dat_task
       if task
         ret = (task.progress_kbn == 3) ? '#cccccc' : '#000000'
       end
     else
-      # 分類,マイルストーン,イベント、その他
       ret = '#000000'
     end
       
   end
 
-
-  #
-  #=== 総数・完了数文字列（形式：完了数/総数）を返す
-  #
-  #指定されたプロジェクトオブジェクトから
-  #含まれるタスク・マイルストーン・イベントの総数・完了数を
-  #「完了数/総数」の形式で返す。
-  #
   def disp_task_count(project)
     projectcomps = project.dat_projectcomps
 
-    # タスク総数は、プロジェクト構成データ数
     allcount = projectcomps.size
 
-    # 完了数はタスク区分により異なる
     completecount = 0
     now = Time.now
     dnow = Date.today
     projectcomps.each do | projectcomp |
       case projectcomp.task_kbn
       when 1
-        # タスク（進捗状況が「完了」の場合）
         completecount += 1 if projectcomp.dat_task.progress_kbn == 3
       when 2
-        # マイルストーン（日付が過ぎている場合）
         if ! projectcomp.dat_milestone.mils_date.nil?
           completecount += 1 if projectcomp.dat_milestone.mils_date < dnow
         end
       when 3
-        # イベント（開始日時が過ぎている場合）
         if ! ( projectcomp.dat_event.start_date.nil? || projectcomp.dat_event.start_time.nil? )
           completecount += 1 if projectcomp.dat_event.start_date < dnow || 
                                 (projectcomp.dat_event.start_date == dnow && projectcomp.dat_event.start_time.strftime('%H%M').to_i < now.strftime('%H%M').to_i)
@@ -419,35 +275,19 @@ module ProjectsHelper
     return completecount.to_s + "/" + allcount.to_s
   end
 
-
-  #
-  #=== 当日アイコンタグ文字列を返す
-  #
-  #指定されたプロジェクト構成オブジェクトから
-  #当日アイコンの表示・非表示を判断し、そのタグ文字列を返す。
-  #
   def disp_today_icon( projectcomp )
     ret = ""
     case projectcomp.task_kbn
     when 1
-      # タスク
       task = projectcomp.dat_task
       if (task)
         ret = (task.complete_date == Date.today) ? image_tag("icon/today.gif", {:alt=>app_localized_message( :label, :icon_today ) , :border => 0, :align=>"absmiddle"}) : '&nbsp;'
       end
     else
-      # 分類,マイルストーン,イベント、その他
       ret = '&nbsp;'
     end
   end
 
-
-  #
-  #=== 期間をあらわす文字列を返す
-  #
-  #指定されたプロジェクトオブジェクトから
-  #期間文字列を生成する。
-  #
   def disp_date_range( project )
     if project.start_date.nil? && project.delivery_date.nil?
       '&nbsp;'
@@ -456,24 +296,10 @@ module ProjectsHelper
     end
   end
 
-
-  #
-  #=== ユーザーをあらわす文字列を返す
-  #
-  #指定されたプロジェクトユーザーオブジェクトから
-  #表示用の名称を生成する。（ユーザー登録済みユーザーは「ユーザー名」、そうでないユーザーは「メールアドレス」）
-  #
   def disp_projectuser_name( pu )
     pu.user.nil? ? pu.email : pu.user.sap_name
   end
 
-
-  #
-  #=== スカイプアイコンタグ文字列を返す
-  #
-  #指定されたプロジェクトユーザーオブジェクトから
-  #スカイプチャット用のアイコンを表示する。
-  #
   def disp_projectuser_skype_icon(project_user)
     if !project_user.user.nil? and (!project_user.user.skype_id.nil? and project_user.user.skype_id != '')
       tag = '<a href="skype:' + project_user.user.skype_id + '?chat" onclick="return skypeCheck();">'
@@ -485,12 +311,6 @@ module ProjectsHelper
     tag
   end
 
-
-  #
-  #=== ユーザー一覧を返す
-  #
-  #プロジェクトに参加可能なユーザーの一覧を出力する。
-  #
   def select_for_users(variable, attribute, project_id, options = {}, html_options = {})
     choises = Array.new
     unless project_id.nil?
@@ -508,18 +328,11 @@ module ProjectsHelper
     else
       choises = choises
     end
-    # ユーザー一覧のプルダウンを出力
     select(variable, attribute, choises, options, html_options)
   end
 
-
-  #
-  #=== ユーザー一覧を返す
-  #
-  #非モデルフィールドの、プロジェクトに参加可能なユーザーの一覧を出力する。
-  #
   def select_for_users_tag(name, project_id, options = {})
-    # ユーザー一覧のプルダウンを出力
+
     choises = Array.new
     unless project_id.nil?
       opt = {
@@ -539,15 +352,7 @@ module ProjectsHelper
     select_tag(name, options_for_select(choises), options)
   end
 
-
-  #
-  #=== 選択オプション配列を返す
-  #
-  #プロジェクトに参加可能なユーザー情報を
-  #SELECTタグへの選択オプションへ渡せるリスト形式にて返す。
-  #
   def list_for_projectusers(project_id)
-    # ユーザー一覧のプルダウンを出力
     choises = Array.new
     unless project_id.nil?
       opt = {
@@ -564,15 +369,7 @@ module ProjectsHelper
     return choises
   end
 
-
-  #
-  #=== 選択オプション配列を返す
-  #
-  #プロジェクトに参加可能なユーザー情報を
-  #列名をキーとしたハッシュ形式の配列で返す。
-  #
   def object_for_projectusers(project_id)
-    # ユーザー一覧のプルダウンを出力
     objects = Array.new
     unless project_id.nil?
       opt = {
@@ -589,13 +386,6 @@ module ProjectsHelper
     return objects
   end
 
-
-  #
-  #=== プロジェクト参加ユーザー文字列を返す
-  #
-  #指定されたプロジェクトオブジェクトに参加中のユーザーの
-  #ユーザー名(メールアドレス）を、全て羅列して返す。
-  #
   def disp_projectusers(project)
     ret = ""
     project.dat_projectusers.each do |pu|
@@ -606,12 +396,6 @@ module ProjectsHelper
     return ret
   end
 
-
-  #
-  #=== タスク区分タグを返す
-  #
-  #タスク区分selectタグを出力する。
-  #
   def select_task_kbn_tag()
     tasks = <<TASKS
 <option value="">#{app_localized_message(:label, :all)}</option>
@@ -640,6 +424,4 @@ TASKS
     message = message.strip
     message
   end
-
-
 end

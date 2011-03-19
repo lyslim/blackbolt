@@ -32,7 +32,7 @@ components.projects.gantt_grid = function(p_cd)
         order_url      : url_for('projects/' + p_cd + '/items/{:id}/item_order_update.json'),
 
         messages: {
-            deleted: "Delete this section. \ n Are you sure?"
+            deleted: "Are you sure to delete?"
         },
 
         grid_list      : null, // Grid element

@@ -64,5 +64,4 @@ class DatTask < ActiveRecord::Base
       projectlog.save
     end
   end
-
 end

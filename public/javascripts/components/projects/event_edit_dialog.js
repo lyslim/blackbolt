@@ -26,9 +26,9 @@ components.projects.event_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "Create an event with this information. \ n Are you sure?",
-            updated: "Update the information in the event. \ n Are you sure?",
-            deleted: "Delete this event. \ n Are you sure?"
+            created: "Are you sure to create an event?",
+            updated: "Are you sure to update this event?",
+            deleted: "Are you sure to delete this event?"
         },
         initialize: function() {
             this.form = this.container + '_form';

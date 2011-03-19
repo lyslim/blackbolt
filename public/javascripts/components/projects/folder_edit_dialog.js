@@ -27,9 +27,9 @@ components.projects.folder_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "Create a folder with this information. \ n Are you sure?",
-            updated: "Update the information in this folder. \ n Are you sure?",
-            deleted: "Delete this folder. \ n Are you sure?"
+            created: "Create a folder with this information. \n Are you sure?",
+            updated: "Update the information in this folder. \n Are you sure?",
+            deleted: "Delete this folder. \n Are you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';

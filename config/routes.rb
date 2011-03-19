@@ -4,7 +4,6 @@ ActionController::Routing::Routes.draw do |map|
 
 ActionController::Base.relative_url_root = ""
 
-  #map.resource :auth
   map.resources :env, :controller => 'env'
 
   # Projects
@@ -35,13 +34,6 @@ ActionController::Base.relative_url_root = ""
   map.resource :dashboard
   
   map.root :controller => "dashboards", :action => 'show'
-  
-  #map.resource :account
-
-  # authentication
-  #map.resources :users
-  #map.resource :session
-  #map.resource :login, { :controller => 'sessions', :new => {:show => :get} }
 
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -19,25 +19,22 @@ class FoldersController < ApplicationController
     parent_node  = params[:dlg_dir_edit_parent_node] || ''
     dir_name     = params[:dlg_dir_edit_dir_name] || ''
 
-    # パラメータチェック
     if project_id == "" || parent_node == "" || dir_name == ""
-      message = "新規フォルダエラー"
+      message = "Error in creating folder."
       render :text => result_for_json(false, message, {})
       return
     end
 
     iconv = Iconv.new($FILESYSTEM_ENCODING, $SYSTEM_ENCODING)
-    # パスの取得    
+        
     rootpath = get_project_files_root(project_id)
     target_path = rootpath + iconv.iconv(parent_node)
 
-    # ファイル名の取得
     dname = iconv.iconv( dir_name )
     fulldname = target_path + dname
 
-    # ファイル名存在チェック
     if FileTest.exist?(fulldname)
-      message = "# 同名エラー"
+      message = "Error: same name."
       render :text => result_for_json(false, message, {})
       return
     end
@@ -57,8 +54,7 @@ class FoldersController < ApplicationController
 
 	target_file = params[:dlg_dir_edit_target_file] || ''
     dir_name = params[:dlg_dir_edit_dir_name] || ''
-
-    # パスの取得    
+    
     rootpath = get_project_files_root(project_id)
 
 	end_s = (rootpath + target_file).rindex("/")
@@ -142,7 +138,5 @@ class FoldersController < ApplicationController
 
   def new_item
   end
-
-
-
+  
 end

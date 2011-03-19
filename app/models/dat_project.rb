@@ -1,10 +1,8 @@
 class DatProject < ActiveRecord::Base
-  #########################
-  # 関連定義
-  #########################
-  # プロジェクト構成データを所有する(1:多)
+
+  # (1:n)
   has_many :dat_projectcomps, :foreign_key => "project_id", :dependent=>:destroy
-  # プロジェクトユーザーデータを所有する(1:多)
+  # (1:n)
   has_many :dat_projectusers, :foreign_key => "project_id", :dependent=>:destroy
   has_many :users,  :through => :dat_projectusers
 
@@ -16,12 +14,6 @@ class DatProject < ActiveRecord::Base
     find(:first, opt)
   end
 
-  #
-  #=== テンプレートデータから属性値をコピーする
-  #
-  #指定されたテンプレートデータ(テンプレートマスタ）から
-  #属性値をコピーする。
-  #
   def copyFromTemplate(template)
     for composition in template.mst_compositions
       projectcomp = self.dat_projectcomps.build

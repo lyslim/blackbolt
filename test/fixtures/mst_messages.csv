@@ -86,9 +86,9 @@
 85,"edit_project",1,"Save Project","プロジェクトの変更","更改项目","Save Project",1
 86,"destroy_project",1,"Delete Project","プロジェクトの削除","删除项目","Delete Project",1
 87,"reissue_password",1,"Forgot Password","パスワード再発行","忘记密码","Forgot Password",1
-88,"signup_mail_subject",1,"Blackbolt Registration Confirmation","9arrowsユーザー登録完了通知","Blackbolt注册确认","Blackbolt Registration Confirmation",1
+88,"signup_mail_subject",1,"Blackbolt Registration Confirmation","Blackboltユーザー登録完了通知","Blackbolt注册确认","Blackbolt Registration Confirmation",1
 89,"edit_user",1,"Edit User","ユーザー情報の変更","用户信息变更","Edit User",1
-90,"invite_mail_subject",1,"[BLACKBOLT] invitation from task dispatcher ","プロジェクト管理ツール【9arrows】へ招待されました","[BLACKBOLT] invitation from task dispatcher","[BLACKBOLT] invitation from task dispatcher",1
+90,"invite_mail_subject",1,"[BLACKBOLT] invitation from task dispatcher ","プロジェクト管理ツール【BLACKBOLT】へ招待されました","[BLACKBOLT] invitation from task dispatcher","[BLACKBOLT] invitation from task dispatcher",1
 91,"logout",1,"Logout","ログアウト","退出","Logout",1
 92,"myprofile",1,"Account","アカウント","帐号","Account",1
 93,"project_leader",1,"Project Leader","プロジェクトリーダー","项目领导","Project Leader",1

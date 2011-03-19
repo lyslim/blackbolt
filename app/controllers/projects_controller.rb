@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 class ProjectsController < ApplicationController
   
   before_filter :authenticate_user!
-
-  # ヘルパ定義
+  
   include ProjectsHelper
   include TasksHelper
 
@@ -22,7 +20,7 @@ class ProjectsController < ApplicationController
 	    projectusers = project.dat_projectusers[0]
 	    projectusers.update_attribute(:active_flg, params[:active_flg])
 
-	    # JSONデータ生成
+	    # JSON
 	    result  = {
 	      :project_id   => project.id,
 	      :project_name => project.project_name,
@@ -34,14 +32,11 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    # 新規プロジェクトオブジェクト生成
     @project = DatProject.new
     @project.dat_projectusers.build
 
-    # テンプレートデータ一覧取得
     @templates = MstTemplate.find(:all)
     
-    # 編集用ビューを指定
     render :action => "edit"
   end
 
@@ -63,45 +58,29 @@ class ProjectsController < ApplicationController
   def edit
 
     unless params[:id].nil?
-      # 登録済みのプロジェクトオブジェクト取得
       p_cd = params[:id]
       opt = {
         :conditions => [" dat_projects.project_cd=? ", p_cd],
         :include    => :dat_projectusers
       }
       @project = DatProject.find(:first, opt)
-      # 参加ユーザーが登録されていない場合、新規生成
+
       @project.dat_projectusers.build if @project.dat_projectusers.size == 0
-      # テンプレートデータ一覧取得
+      
       @templates = MstTemplate.find(:all)
     else
-      # IDが指定されていない場合、新規作成処理へリダイレクト
       redirect_to :action => 'new'
     end
   end
-
-  #
-  #=== プロジェクトの新規作成
-  #
-  #フォームから渡されたデータを元にプロジェクトを作成する．
-  #
-  #ユーザメールアドレスがある場合で，すでに登録されているユーザであれば招集メールを送信する．
-  #ユーザとしてまだ登録されていないユーザにはサインアップ通知メールを送信する．
-  #
-  #テンプレートが指定されている場合には，テンプレートを元にプロジェクトアイテムを生成して登録する．
-  #また，指定パスにファイル共有ディレクトリを生成する．
-  #
+  
+  # create project based on user registered
+  # invite user to project if specified
+  # invite user unregistered to sign up if specified
   def create
-    # プロジェクトオブジェクト生成
-    # フォームパラメータから新規プロジェクトオブジェクトを生成
     project = DatProject.new(params[:project])
     project.create_user_id = current_user.id
     project.update_user_id = current_user.id
 
-    #-----------------------------
-    # 参加ユーザー生成
-    #-----------------------------
-    # 登録者自身もプロジェクトユーザーとして生成
     if ! current_user.id.nil?
       user = User.find(current_user.id)
       projectuser = project.dat_projectusers.build()
@@ -109,44 +88,38 @@ class ProjectsController < ApplicationController
       projectuser.user_id = user.id
       projectuser.create_user_id = project.create_user_id
     end
-    # 参加ユーザー指定時、プロジェクトユーザーオブジェクトを生成
+    
     for user in params[:users]
       next if user.empty?
       next if user == current_user.email
-      # buildにて生成し、ここでは保存しない
+      
       projectuser = project.dat_projectusers.build(:email=>user)
       projectuser.create_user_id = project.create_user_id
       if usr = User.find_by_email(user)
-        # 既にユーザーマスタに登録済みのメールアドレスの場合、ユーザーIDを更新
+
         projectuser.user_id = usr.id
 
-        # プロジェクト召集メールを送信する
+
         if ! usr.email.nil? && ! usr.email.empty?
           AppMailer.deliver_mail_invite_project( usr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>new_session_path} )
         end
       else
-        # 招待メールを送信する
+
         if ! projectuser.email.nil? && ! projectuser.email.empty?
           AppMailer.deliver_mail_invite( projectuser, {:subject=>app_localized_message( :label, :invite_mail_subject ), :url_signup=>new_session_path} )
         end
       end
     end
   
-    #-----------------------------
-    # テンプレートデータから、プロジェクトを構成
-    #-----------------------------
     if ! params[:template][:id].nil? && ! params[:template][:id].empty?
-      # 選択されたテンプレートデータを取得
+
       template = MstTemplate.find(:first,
                                   :conditions=>[" mst_templates.id=? ", params[:template][:id]], 
                                   :include=>[{:mst_compositions=>[:mst_tptask, :mst_tpmilestone, :mst_tpevent]}])
-      # テンプレートデータを新規オブジェクトにコピー（ここでは保存されない）
+
         project.copyFromTemplate(template)
     end
 
-    #-----------------------------
-    # プロジェクトデータ保存実施（関連データもここで保存）
-    #-----------------------------
     if ! project.save
       @project = project 
       @templates = MstTemplate.find(:all)
@@ -154,29 +127,18 @@ class ProjectsController < ApplicationController
       return 
     end
 
-    #-----------------------------
-    # FTPディレクトリ作成
-    #-----------------------------
     path = get_project_files_root(project.id)
     #Dir.mkdir(path)
     FileUtils.mkdir_p(path)
 
-    # プロジェクトコントローラデフォルトページへリダイレクト
     redirect_to :action => 'index'
   end
 
-  #
-  #=== プロジェクト情報の更新
-  #
-  #指定されたプロジェクトの情報を更新する．
   def update
     if params[:project][:id].nil? || params[:project][:id].empty?
-      # IDが指定されていない場合、エラー処理
-      # ????? エラー処理 ????? 
+      # ????? error-handling ????? 
     else
-      #-----------------------------
-      # 登録済みのプロジェクトデータを取得
-      #-----------------------------
+
       id = params[:project][:id]
       project = DatProject.find(:first,
                                 :conditions=>[" dat_projects.id=? ", id],
@@ -184,51 +146,42 @@ class ProjectsController < ApplicationController
 
       project.update_user_id = current_user.id
 
-      #-----------------------------
-      # 参加ユーザー生成
-      #-----------------------------
       projectusers = Array.new
       project.dat_projectusers.each do |puser|
         projectusers.push puser.email
       end
 
-      # 参加ユーザー指定時、プロジェクトユーザーオブジェクトを生成
       for user in params[:users]
         next if user.empty?
         next if ! projectusers.delete(user).nil?
         next if user == current_user.email
 
-        # buildにて生成し、ここでは保存しない
         projectuser = project.dat_projectusers.build(:email=>user)
         projectuser.create_user_id = project.update_user_id
         if mstusr = User.find_by_email(user)
-          # 既にユーザーマスタに登録済みのメールアドレスの場合、ユーザーIDを更新
+
           projectuser.user_id = mstusr.id
 
-          # プロジェクト召集メールを送信する
           if ! mstusr.email.nil? && ! mstusr.email.empty?
             AppMailer.deliver_mail_invite_project( mstusr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>new_user_session_path} )
           end
         else
-          # 招待メールを送信する
+
           if ! projectuser.email.nil? && ! projectuser.email.empty?
             AppMailer.deliver_mail_invite( projectuser, {:subject=>app_localized_message( :label, :invite_mail_subject ), :url_signup=>new_user_session_path} )
           end
         end
       end
 
-      #-----------------------------
-      # プロジェクトデータ保存実施（関連データもここで保存）
-      #-----------------------------
+
       if ! project.update_attributes(params[:project])
-        # ????? エラー処理 ????? 
+        # ????? error-handling ????? 
         @project = project 
         @templates = MstTemplate.find(:all)
         render :action => 'edit'
         return 
       end
       
-      # 参加ユーザー削除
       if projectusers.size > 0
         conditions = " project_id = ? AND email in (__emails__)"
         emails   = []
@@ -243,26 +196,16 @@ class ProjectsController < ApplicationController
       end
     end
 
-    # プロジェクトコントローラデフォルトページへリダイレクト
     redirect_to :action => 'index'
   end
 
-
-  #
-  #=== プロジェクトの削除
-  #
-  #プロジェクトの削除を行う．
-  #関連したデータも全て削除する．
-  #
   def destroy
     if params[:project][:id].nil? || params[:project][:id].empty?
     elsif my_project?(params[:project][:id])
-      #-----------------------------
-      # プロジェクトデータ削除実施（関連データも削除される）
-      #-----------------------------
+
       id = params[:project][:id]
       if ! DatProject.destroy(id)
-        # ????? エラー処理 ????? 
+        # ????? error handling ????? 
         @project = project 
         @templates = MstTemplate.find(:all)
         render :action => 'edit'
@@ -273,7 +216,6 @@ class ProjectsController < ApplicationController
       return
     end
 
-    # プロジェクトコントローラデフォルトページへリダイレクト
     redirect_to :action => 'index'
   end
 
@@ -301,11 +243,7 @@ class ProjectsController < ApplicationController
   end
 
   def get_tasks
-    #-----------------------------
-    # ログイン中ユーザーが担当している
-    # タスクのリストを取得
-    # ※担当者、構成データも同時に取得
-    #-----------------------------
+
     conditions = "dat_projects.valid_flg = 1 AND dat_projectusers.user_id = #{current_user.id}"
     if ! @project.id.nil?
       conditions += " AND dat_projectcomps.project_id = #{@project.id}"
@@ -461,15 +399,10 @@ class ProjectsController < ApplicationController
 
   def get_project_detail(id)
     if id.nil?
-      #-----------------------------
-      # ID指定なしの場合、空のプロジェクトを生成
-      #-----------------------------
+
       project = DatProject.new
     else
-      #-----------------------------
-      # 指定されたプロジェクトデータを取得
-      # （トップレベルのプロジェクト構成およびタスク、イベント、分類、マイルストーンデータも同時に取得）
-      #-----------------------------
+
       include = [ {:dat_projectcomps=>[:dat_milestone, {:dat_task=>[{:dat_user_main=>:user}, {:dat_user_client=>:user}]}, :dat_event, :mst_user_create]} ]
       project = DatProject.find( :first,
                                  :conditions => [" dat_projects.id=? ", id],
@@ -483,15 +416,10 @@ class ProjectsController < ApplicationController
 
   def get_project_detail2(id)
     if id.nil?
-      #-----------------------------
-      # ID指定なしの場合、空のプロジェクトを生成
-      #-----------------------------
+
       project = DatProject.new
     else
-      #-----------------------------
-      # 指定されたプロジェクトデータを取得
-      # （トップレベルのプロジェクト構成およびタスク、イベント、分類、マイルストーンデータも同時に取得）
-      #-----------------------------
+
       include = [ {:dat_projectcomps=>[:dat_milestone, {:dat_task=>[{:dat_user_main=>:user}, {:dat_user_client=>:user}]}, :dat_event, :mst_user_create]} ]
       project = DatProject.find( :first,
                                  :conditions => [" dat_projects.id=? ", id],
@@ -499,8 +427,6 @@ class ProjectsController < ApplicationController
                                  :order      => "dat_projectcomps.task_kbn asc, dat_tasks.start_date, dat_tasks.end_date desc"
                                )
     end
-
     project
   end
-
 end

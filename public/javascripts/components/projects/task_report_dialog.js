@@ -25,7 +25,7 @@ components.projects.task_report_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "Create a report with this information. \ n Are you sure?"
+            created: "Create a report with this information. \nAre you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';

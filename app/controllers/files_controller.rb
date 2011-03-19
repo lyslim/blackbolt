@@ -53,16 +53,16 @@ class FilesController < ApplicationController
     upload_file_name = params[:dlg_fil_upload_upload_file_name] || ''
 
     iconv = Iconv.new($FILESYSTEM_ENCODING, $SYSTEM_ENCODING)
-    # パスの取得    
+    # get path   
     rootpath = get_project_files_root(project_id)
     target_path = rootpath + iconv.iconv(parent_node)
 
-    # ファイル名の取得
+    # get file name
     fname = iconv.iconv( File.basename(upload_file_name) )
     fullfname = target_path + fname
-    # ファイル名存在チェック
+    # check existence
     if FileTest.exist?(fullfname)
-      # 上書き確認
+      # overwrite?
       message = app_localized_message(:confirm, :file_already_exist)
       return result_for_json(true, message, {})
     else

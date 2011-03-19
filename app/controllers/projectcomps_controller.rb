@@ -1,8 +1,8 @@
 class ProjectcompsController < ApplicationController
 
   ###########################################################
-  # メソッド：行番号更新用アクション
-  # 概　　要：アイテムの行番号を更新する
+  # Method: Update the line item
+  # Abstract: The line number of the item to update
   ###########################################################
   def item_order_update
 
@@ -11,10 +11,10 @@ class ProjectcompsController < ApplicationController
 
     return unless my_item?(params[:id])# check permission
 
-    # 対象のプロジェクト構成データを取得
+    # retrieve target
     target = DatProjectcomp.find(id)
 
-    # 入れ替え対象のプロジェクト構成データを取得
+    # replace
     if offset.to_i > 0
       replacement = DatProjectcomp.find(:first,
                                         :conditions=>[" project_id=? AND line_no > ?", target.project_id, target.line_no],
@@ -27,7 +27,7 @@ class ProjectcompsController < ApplicationController
                                         )
     end
 
-    # 入れ替え対象がある場合、行番号を入れ替え
+    # if the target is replaced, replace the line number
     if ! replacement.nil?
       target_line_no = replacement.line_no
       replacement.line_no = target.line_no
@@ -40,7 +40,5 @@ class ProjectcompsController < ApplicationController
     respond_to do |f|
       f.json { render :text => result_for_json(true, '', {}) }
     end
-
   end
-
 end

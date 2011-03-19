@@ -62,6 +62,4 @@ class ReportsController < ApplicationController
       f.json { render :text => result_for_json(r, message, result)}
     end
   end
-
-
 end

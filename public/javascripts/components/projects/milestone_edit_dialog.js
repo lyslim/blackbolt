@@ -25,9 +25,9 @@ components.projects.milestone_edit_dialog = function(project_cd)
 
         // messaage
         messages: {
-            created: "Create a milestone with this information. \ n Are you sure?",
-            updated: "Update the information on this milestone. \ n Are you sure?",
-            deleted: "Delete this milestone. \ n Are you sure?"
+            created: "Create a milestone with this information. \n Are you sure?",
+            updated: "Update the information on this milestone. \n Are you sure?",
+            deleted: "Delete this milestone. \n Are you sure?"
         },
         initialize: function() {
             this.form = this.container + '_form';
