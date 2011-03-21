@@ -1,3 +1,4 @@
 "id","type_name","template_name","memo","valid_flg","create_user_id","created_on","update_user_id","updated_on"
 1,"Category Templates","Cloud Service Delivery",,1,0,"NOW()",0,"NOW()"
 2,"Category Templates","Web Application Project",,1,0,"NOW()",0,"NOW()"
+3,"Category Templates","Scaling Add-on",,1,0,"NOW()",0,"NOW()"
