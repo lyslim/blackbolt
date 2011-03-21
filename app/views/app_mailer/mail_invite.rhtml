@@ -1,5 +1,5 @@
-Hello, <%= @user.email %>
+<p>Hello, <%= @user.email %></p>
 
-[BLACKBOLT] invites you to join, please sign up with the following link:
+<p>[BLACKBOLT] invites you to join, please sign up with the following link:</p>
 
-Sign up
+<p><%= link_to 'Sign up', @info[:url_signup] %></p>

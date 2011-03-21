@@ -15,5 +15,7 @@ class DatProjectuser < ActiveRecord::Base
   has_many :dat_task_client, :class_name=>"DatTask", :foreign_key=>"client_user_id", :dependent=>:nullify
   # Main person in charger(1:n)
   has_many :dat_task_main, :class_name=>"DatTask", :foreign_key=>"main_user_id", :dependent=>:nullify
+  
+  attr_accessible :email, :user_id
 
 end

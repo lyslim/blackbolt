@@ -6,6 +6,16 @@ class ProjectsController < ApplicationController
   include TasksHelper
 
   def index
+    
+    unless DatProjectuser.nil?
+       datProjUser = DatProjectuser.find_by_email(current_user.email)
+       unless datProjUser.nil?
+         if datProjUser.user_id.nil?
+            datProjUser.update_attribute('user_id', current_user.id)
+         end
+       end
+    end
+    
     opt = {
      :include    => [{:dat_projectusers=>:user}],
      :conditions => ["dat_projects.valid_flg = 1 AND dat_projects.id in (SELECT pu.project_id FROM dat_projectusers pu WHERE pu.user_id = ? ) ", @current_user.id],
@@ -101,12 +111,12 @@ class ProjectsController < ApplicationController
 
 
         if ! usr.email.nil? && ! usr.email.empty?
-          AppMailer.deliver_mail_invite_project( usr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>new_session_path} )
+          AppMailer.deliver_mail_invite_project( usr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>project_url(:id=>params[:project][:project_cd])} )
         end
       else
 
         if ! projectuser.email.nil? && ! projectuser.email.empty?
-          AppMailer.deliver_mail_invite( projectuser, {:subject=>app_localized_message( :label, :invite_mail_subject ), :url_signup=>new_session_path} )
+          AppMailer.deliver_mail_invite( projectuser, {:subject=>app_localized_message( :label, :invite_mail_subject ), :url_signup=>new_user_registration_url} )
         end
       end
     end
@@ -163,12 +173,12 @@ class ProjectsController < ApplicationController
           projectuser.user_id = mstusr.id
 
           if ! mstusr.email.nil? && ! mstusr.email.empty?
-            AppMailer.deliver_mail_invite_project( mstusr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>new_user_session_path} )
+            AppMailer.deliver_mail_invite_project( mstusr, {:subject=>app_localized_message( :label, :invite_project_mail_subject ), :project_name=>params[:project][:project_name], :url_login=>project_url} )
           end
         else
 
           if ! projectuser.email.nil? && ! projectuser.email.empty?
-            AppMailer.deliver_mail_invite( projectuser, {:subject=>app_localized_message( :label, :invite_mail_subject ), :url_signup=>new_user_session_path} )
+            AppMailer.deliver_mail_invite( projectuser, {:subject=>app_localized_message( :label, :invite_mail_subject ), :url_signup=>new_user_registration_url} )
           end
         end
       end

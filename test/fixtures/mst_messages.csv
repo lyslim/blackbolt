@@ -88,7 +88,7 @@
 87,"reissue_password",1,"Forgot Password","パスワード再発行","忘记密码","Forgot Password",1
 88,"signup_mail_subject",1,"Blackbolt Registration Confirmation","Blackboltユーザー登録完了通知","Blackbolt注册确认","Blackbolt Registration Confirmation",1
 89,"edit_user",1,"Edit User","ユーザー情報の変更","用户信息变更","Edit User",1
-90,"invite_mail_subject",1,"[BLACKBOLT] invitation from task dispatcher ","プロジェクト管理ツール【BLACKBOLT】へ招待されました","[BLACKBOLT] invitation from task dispatcher","[BLACKBOLT] invitation from task dispatcher",1
+90,"invite_mail_subject",1,"[BLACKBOLT] Invitation from task dispatcher ","プロジェクト管理ツール【BLACKBOLT】へ招待されました","[BLACKBOLT] Invitation from task dispatcher","[BLACKBOLT] Invitation from task dispatcher",1
 91,"logout",1,"Logout","ログアウト","退出","Logout",1
 92,"myprofile",1,"Account","アカウント","帐号","Account",1
 93,"project_leader",1,"Project Leader","プロジェクトリーダー","项目领导","Project Leader",1
@@ -175,6 +175,6 @@
 174,"create_dir_confirm",2,"Are you sure to create a folder?","指定されたフォルダを作成します。よろしいですか？","Are you sure to create a folder?","Are you sure to create a folder?",1
 175,"dir_name",1,"Folder name","フォルダ名","Folder name","Folder name",1
 176,"downloadfile",1,"Download","Download","ダウンロード","Download",1
-177,"invite_project_mail_subject",1,"[Blackbolt] You were invited as a project member","【Blackbolt】プロジェクトへメンバー召集されました","[Blackbolt] You were invited as a project member","[Blackbolt] You were invited as a project member",1
+177,"invite_project_mail_subject",1,"[BLACKBOLT] You were invited as a project member","【Blackbolt】プロジェクトへメンバー召集されました","[BLACKBOLT] You were invited as a project member","[BLACKBOLT] You were invited as a project member",1
 178,"folder_already_exist",3,"The specified folder name already exists. Please specify a different name.","指定されたフォルダ名は既に存在します。別の名前を指定してください。","The specified folder name already exists. Please specify a different name.","The specified folder name already exists. Please specify a different name.",1
 179,"select_sheet_trigger",1,"Select sheet","シートを選択","Select sheet","Select sheet",1

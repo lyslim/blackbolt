@@ -1,5 +1,5 @@
-Hello, <%= @user.sap_name %>
+<p>Hello, <%= @user.sap_name %></p>
 
-You are invited to join project [<%= @info[:project_name] %>]
+<p>You are invited to join project [<%= @info[:project_name] %>], please access via link below:</p>
 
-Log in
+<p><%= link_to 'Log in Project', @info[:url_login] %></p>
